@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/components/onboarding.dart';
-import 'package:healthcare/screens/onboarding_2.dart';
 
-class Onboarding1 extends StatelessWidget {
-  const Onboarding1({super.key});
+class Onboarding2 extends StatelessWidget {
+  const Onboarding2 ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +14,16 @@ class Onboarding1 extends StatelessWidget {
             NavSkipText(),
             const SizedBox(height: 20),
             OboardingImage(
-              imagepath: "assets/images/lady-doctor.png"
+              imagepath: "assets/images/male-doctor.png"
             ),
             const SizedBox(
               height: 20
             ),
             OnboardingText(
-              text: "Find a lot of specialist doctors in one place",
+              text: "Get advice only from a doctor you believe in.",
             ),
             OnboardingNavigation(
-              pageno: 1,
+              pageno: 2,
               destination: Onboarding2(),
             ),
           ],
