@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare/screens/splash.dart';
+import 'package:healthcare/screens/onboarding/splash.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/components/onboarding.dart';
+import 'package:healthcare/screens/onboarding/onboarding_3.dart';
 
 class Onboarding2 extends StatelessWidget {
   const Onboarding2 ({super.key});
@@ -7,9 +8,11 @@ class Onboarding2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarOnboarding(),
+      backgroundColor: Colors.white,
+      // appBar: AppBarOnboarding(),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             NavSkipText(),
             const SizedBox(height: 20),
@@ -24,7 +27,7 @@ class Onboarding2 extends StatelessWidget {
             ),
             OnboardingNavigation(
               pageno: 2,
-              destination: Onboarding2(),
+              destination: Onboarding3(),
             ),
           ],
         ),

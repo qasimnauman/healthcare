@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
+import "package:healthcare/screens/onboarding/onboarding_3.dart";
 
 class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
   const AppBarOnboarding({super.key});
@@ -8,19 +9,19 @@ class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      leading: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          top: 10,
-          bottom: 10,
-        ),
-        child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
+      // leading: Padding(
+      //   padding: const EdgeInsets.only(
+      //     left: 20,
+      //     top: 10,
+      //     bottom: 10,
+      //   ),
+      //   child: IconButton(
+      //     icon: const Icon(Icons.arrow_back_ios),
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //   ),
+      // ),
     );
   }
 
@@ -33,19 +34,27 @@ class NavSkipText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            "Skip",
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Onboarding3()),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              "Skip",
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -153,6 +162,79 @@ class OnboardingNavigation extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class Logo extends StatelessWidget {
+  const Logo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset("assets/images/logo.png", height: 120),
+        const SizedBox(height: 20),
+        Text(
+          "Healthcare",
+          style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.w600),
+        ),
+      ],
+    );
+  }
+}
+
+class NavButtons extends StatelessWidget {
+  final Widget destination;
+  final String text;
+  const NavButtons({super.key, required this.text, required this.destination});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => destination),
+        );
+      },
+      child: Container(
+        width: 250,
+        height: 56,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              spreadRadius: 0,
+              blurRadius: 1,
+              offset: const Offset(0, 1),
+            ),
+          ],
+          color:
+              text == "SignIn" || text == "Patient"
+                  ? Color.fromRGBO(64, 124, 226, 1)
+                  : Colors.white,
+          border:
+              text == "SignUp" ||
+                      text == "Doctor" ||
+                      text == "Lady Health Worker"
+                  ? Border.all(color: Color.fromRGBO(64, 124, 226, 1))
+                  : null,
+          borderRadius: BorderRadius.circular(32),
+        ),
+        child: Text(
+          text,
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color:
+                text == "SignIn" || text == "Patient"
+                    ? Colors.white
+                    : Color.fromRGBO(64, 124, 226, 1),
+          ),
         ),
       ),
     );
