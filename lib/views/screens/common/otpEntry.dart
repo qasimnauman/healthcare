@@ -100,6 +100,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   return SizedBox(
                     width: size.width * 0.12,
                     child: TextField(
+                      onTapOutside: (event) => FocusScope.of(context).unfocus(),
                       controller: _controllers[index],
                       maxLength: 1,
                       textAlign: TextAlign.center,
@@ -146,24 +147,34 @@ class _OTPScreenState extends State<OTPScreen> {
                       // Restart the timer after resending OTP
                       startTimer();
                     },
-                    child: ProceedButton(isEnabled: true, text: "Resend OTP"),
+                    child: Text(
+                      "Resend OTP",
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
                   ),
             const SizedBox(height: 24),
             // Confirm OTP button
-            InkWell(
-              onTap: () {
-                final otp = _controllers.map((c) => c.text).join();
-                debugPrint("Entered OTP: $otp");
-                // Clear OTP fields when Confirm OTP is pressed
-                setState(() {
-                  for (final controller in _controllers) {
-                    controller.clear();
-                  }
-                });
-                FocusScope.of(context).unfocus();
-              },
-              child:
-                  ProceedButton(isEnabled: true, text: "Confirm OTP"),
+            Container(
+              margin: const EdgeInsets.only(top: 40),
+              child: InkWell(
+                onTap: () {
+                  final otp = _controllers.map((c) => c.text).join();
+                  debugPrint("Entered OTP: $otp");
+                  // Clear OTP fields when Confirm OTP is pressed
+                  setState(() {
+                    for (final controller in _controllers) {
+                      controller.clear();
+                    }
+                  });
+                  FocusScope.of(context).unfocus();
+                },
+                child:
+                    ProceedButton(isEnabled: true, text: "Confirm OTP"),
+              ),
             ),
           ],
         ),
