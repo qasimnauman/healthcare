@@ -3,25 +3,26 @@ import "package:google_fonts/google_fonts.dart";
 import "package:healthcare/views/screens/onboarding/onboarding_3.dart";
 
 class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarOnboarding({super.key});
+  final bool isBackButtonVisible;
+  const AppBarOnboarding({super.key, this.isBackButtonVisible = false});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      // leading: Padding(
-      //   padding: const EdgeInsets.only(
-      //     left: 20,
-      //     top: 10,
-      //     bottom: 10,
-      //   ),
-      //   child: IconButton(
-      //     icon: const Icon(Icons.arrow_back_ios),
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //   ),
-      // ),
+      leading:
+          isBackButtonVisible
+              ? Padding(
+                padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              )
+              : null,
+      backgroundColor: isBackButtonVisible ? Colors.white : null,
     );
   }
 
@@ -169,17 +170,26 @@ class OnboardingNavigation extends StatelessWidget {
 }
 
 class Logo extends StatelessWidget {
-  const Logo({super.key});
+  final String text;
+  const Logo({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset("assets/images/logo.png", height: 120),
+        Center(child: Image.asset("assets/images/logo.png", height: 120)),
         const SizedBox(height: 20),
-        Text(
-          "Healthcare",
-          style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.w600),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: Text(
+            text,
+            style: GoogleFonts.poppins(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+              color: Color.fromRGBO(34, 58, 106, 1)
+            ),
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );

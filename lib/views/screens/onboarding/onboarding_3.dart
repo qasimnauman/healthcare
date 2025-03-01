@@ -11,25 +11,33 @@ class Onboarding3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBarOnboarding(),
+      appBar: AppBarOnboarding(isBackButtonVisible: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+          // spacing: 16,
+          // mainAxisSize: MainAxisSize.min,
           children: [
-            Logo(),
-            const SizedBox(height: 76),
-            Text(
-              "Let's get started",
-              style: GoogleFonts.poppins(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 76),
+              child: Logo(text: "HealthCare"),
             ),
-            const SizedBox(height: 16),
-            NavButtons(destination: Onboarding1(), text: "SignIn"),
-            const SizedBox(height: 16),
-            NavButtons(destination: SignUpOptions(), text: "SignUp"),
+            const SizedBox(height: 76),
+            Column(
+              children: [
+                Text(
+                  "Let's get started",
+                  style: GoogleFonts.poppins(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                NavButtons(destination: Onboarding1(), text: "SignIn"),
+                const SizedBox(height: 16),
+                NavButtons(destination: SignUpOptions(), text: "SignUp"),
+              ],
+            ),
           ],
         ),
       ),

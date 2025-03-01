@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/onboarding/onboarding_1.dart';
+import 'package:healthcare/views/screens/signup/patientsignup.dart';
 
 class SignUpOptions extends StatelessWidget {
   const SignUpOptions ({super.key});
@@ -9,13 +9,21 @@ class SignUpOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
           // mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Logo(),
+            Container(
+              margin: const EdgeInsets.only(bottom: 76),
+              child: Logo(
+                text: "HealthCare",
+              ),
+            ),
             const SizedBox(height: 76),
             Text(
               "Sign Up",
@@ -26,7 +34,7 @@ class SignUpOptions extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             NavButtons(
-              destination: Onboarding1(),
+              destination: PatientSignUp(),
               text: "Patient",
             ),
             const SizedBox(height: 16),
