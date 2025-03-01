@@ -155,21 +155,22 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
 }
 
 class ProceedButton extends StatelessWidget {
+  final String text;
   final bool isEnabled;
-  const ProceedButton({super.key, required this.isEnabled});
+  const ProceedButton({super.key, required this.isEnabled, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery.of(context).size.width * 0.85,
       decoration: BoxDecoration(
         color: isEnabled ? const Color.fromRGBO(64, 124, 226, 1) : Colors.grey,
         borderRadius: BorderRadius.circular(32),
       ),
       child: Center(
         child: Text(
-          "Send OTP",
+          text,
           style: GoogleFonts.poppins(
             color: Colors.white,
             fontWeight: FontWeight.w600,

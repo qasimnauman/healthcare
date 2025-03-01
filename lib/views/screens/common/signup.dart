@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/components/signup.dart';
+import 'package:healthcare/views/screens/common/otpEntry.dart';
 
-class PatientSignUp extends StatefulWidget {
-  const PatientSignUp({super.key});
+class SignUp extends StatefulWidget {
+  final String type;
+  const SignUp({super.key, required this.type});
 
   @override
-  State<PatientSignUp> createState() => _PatientSignUpState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _PatientSignUpState extends State<PatientSignUp> {
-  bool _privacyAccepted = false;
+class _SignUpState extends State<SignUp> {
+  late String type;
+
+  @override
+  void initState() {
+    super.initState();
+    type = widget.type;
+  }
+
+  bool privacyAccepted = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarOnboarding(isBackButtonVisible: true),
+      appBar: AppBarOnboarding(isBackButtonVisible: true, text: ''),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         reverse: true,
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: [
             Container(
               margin: EdgeInsets.only(top: 20),
-              child: Logo(text: "Welcome to Healthcare as a Patient"),
+              child: Logo(text: 'Welcome to Healthcare as a $type'),
             ),
             Container(
               margin: const EdgeInsets.only(top: 50),
@@ -50,24 +60,27 @@ class _PatientSignUpState extends State<PatientSignUp> {
             ),
             SizedBox(height: 51),
             PrivacyPolicy(
-              isselected: _privacyAccepted,
+              isselected: privacyAccepted,
               onChanged: (newValue) {
                 setState(() {
-                  _privacyAccepted = newValue;
+                  privacyAccepted = newValue;
                 });
               },
             ),
             SizedBox(height: 20),
             GestureDetector(
               onTap:
-                  !_privacyAccepted
+                  privacyAccepted
                       ? () {
-                        // Your send OTP logic here.
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OTPScreen(type: type),
+                          ),
+                        );
                       }
-                      : null, // onTap is disabled if _privacyAccepted is false
-              child: ProceedButton(
-                isEnabled: _privacyAccepted,
-              ),
+                      : null,
+              child: ProceedButton(isEnabled: privacyAccepted, text: 'Send OTP'),
             ),
           ],
         ),

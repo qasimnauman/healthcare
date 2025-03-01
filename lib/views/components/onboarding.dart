@@ -3,8 +3,13 @@ import "package:google_fonts/google_fonts.dart";
 import "package:healthcare/views/screens/onboarding/onboarding_3.dart";
 
 class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
+  final String text;
   final bool isBackButtonVisible;
-  const AppBarOnboarding({super.key, this.isBackButtonVisible = false});
+  const AppBarOnboarding({
+    super.key,
+    this.isBackButtonVisible = false,
+    this.text = '',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +28,16 @@ class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
               )
               : null,
       backgroundColor: isBackButtonVisible ? Colors.white : null,
+      title: text.isNotEmpty ? Text(text) : null,
+      centerTitle: text.isNotEmpty ? true : false,
+      titleTextStyle:
+          text.isNotEmpty
+              ? GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              )
+              : null,
     );
   }
 
@@ -186,7 +201,7 @@ class Logo extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 25,
               fontWeight: FontWeight.w600,
-              color: Color.fromRGBO(34, 58, 106, 1)
+              color: Color.fromRGBO(34, 58, 106, 1),
             ),
             textAlign: TextAlign.center,
           ),
