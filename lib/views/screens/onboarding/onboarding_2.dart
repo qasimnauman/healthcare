@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare/components/onboarding.dart';
-import 'package:healthcare/screens/onboarding/onboarding_3.dart';
+import 'package:healthcare/views/components/onboarding.dart';
+import 'package:healthcare/views/screens/onboarding/onboarding_3.dart';
 
 class Onboarding2 extends StatelessWidget {
   const Onboarding2 ({super.key});

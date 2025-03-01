@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
-import "package:healthcare/screens/onboarding/onboarding_3.dart";
+import "package:healthcare/views/screens/onboarding/onboarding_3.dart";
 
 class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
   const AppBarOnboarding({super.key});
