@@ -98,14 +98,14 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               iconSize: 30,
               icon: Icon(
                 _isselected
-                    ? Icons.check_box_outline_blank
-                    : Icons.check_box_outlined,
+                    ? Icons.check_box_outlined
+                    : Icons.check_box_outline_blank
               ),
               onPressed: _toggleSelection,
               color:
                   _isselected
-                      ? Colors.grey
-                      : const Color.fromRGBO(34, 58, 106, 1),
+                      ? const Color.fromRGBO(34, 58, 106, 1)
+                      : Colors.grey
             ),
             const SizedBox(width: 10), // Optional spacing
             Flexible(
@@ -164,7 +164,7 @@ class ProceedButton extends StatelessWidget {
       height: 60,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
-        color: !isEnabled ? const Color.fromRGBO(64, 124, 226, 1) : Colors.grey,
+        color: isEnabled ? const Color.fromRGBO(64, 124, 226, 1) : Colors.grey,
         borderRadius: BorderRadius.circular(32),
       ),
       child: Center(
