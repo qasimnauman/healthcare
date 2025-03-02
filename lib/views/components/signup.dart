@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DataInputFeild extends StatelessWidget {
@@ -17,9 +18,25 @@ class DataInputFeild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: TextFormField(
+        // controller: inputType == TextInputType.phone
+        //     ? TextEditingController(text: '+92')
+        //     : null,
+        // onChanged: (value) {
+        //   if (inputType == TextInputType.phone && !value.startsWith('+92')) {
+        //     final newValue = '+92' + value.replaceAll('+92', '');
+        //     WidgetsBinding.instance.addPostFrameCallback((_) {
+        //       (context as Element).markNeedsBuild();
+        //     });
+        //     (context as Element).markNeedsBuild();
+        //   }
+        // },
         onTapOutside: (event) => FocusScope.of(context).unfocus(),
         style: GoogleFonts.poppins(fontSize: 16, color: Colors.black),
         keyboardType: inputType,
+        inputFormatters:
+            inputType == TextInputType.phone
+                ? [LengthLimitingTextInputFormatter(11)]
+                : null,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Please enter your $hinttext';
@@ -30,12 +47,23 @@ class DataInputFeild extends StatelessWidget {
           filled: true,
           fillColor: Color.fromRGBO(249, 250, 251, 1),
           hintText: hinttext,
-          hintStyle: GoogleFonts.poppins(fontSize: 16, color: Colors.grey),
-          prefixIcon: Icon(icon, color: Colors.grey, size: 32),
+          hintStyle: GoogleFonts.poppins(
+            fontSize: 16,
+            color: Colors.grey,
+            wordSpacing: 3.0, // Optional: apply same spacing for hint text
+            letterSpacing: 1.5,
+          ),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 10,
+            ),
+            child: Icon(icon, color: Colors.grey, size: 32),
+          ),
           contentPadding: const EdgeInsets.symmetric(vertical: 24.0),
           constraints: BoxConstraints(
             minHeight: 60,
-            maxWidth: MediaQuery.of(context).size.width * 0.9,
+            maxWidth: MediaQuery.of(context).size.width * 0.85,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -99,13 +127,13 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               icon: Icon(
                 _isselected
                     ? Icons.check_box_outlined
-                    : Icons.check_box_outline_blank
+                    : Icons.check_box_outline_blank,
               ),
               onPressed: _toggleSelection,
               color:
                   _isselected
                       ? const Color.fromRGBO(34, 58, 106, 1)
-                      : Colors.grey
+                      : Colors.grey,
             ),
             const SizedBox(width: 10), // Optional spacing
             Flexible(

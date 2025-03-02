@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/onboarding/onboarding_1.dart';
+import 'package:healthcare/views/screens/common/signin.dart';
 import 'package:healthcare/views/screens/onboarding/signupoptions.dart';
 
 class Onboarding3 extends StatelessWidget {
@@ -33,7 +33,7 @@ class Onboarding3 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                NavButtons(destination: Onboarding1(), text: "SignIn"),
+                NavButtons(destination: SignIN(), text: "SignIn"),
                 const SizedBox(height: 16),
                 NavButtons(destination: SignUpOptions(), text: "SignUp"),
               ],

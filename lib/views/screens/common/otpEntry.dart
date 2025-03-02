@@ -6,15 +6,15 @@ import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/components/signup.dart';
 
 class OTPScreen extends StatefulWidget {
-  final String type;
-  const OTPScreen({super.key, required this.type});
+  final String text;
+  const OTPScreen({super.key, required this.text});
 
   @override
   State<OTPScreen> createState() => _OTPScreenState();
 }
 
 class _OTPScreenState extends State<OTPScreen> {
-  late String type;
+  late String text;
 
   Timer? _timer;
   int _start = 60;
@@ -28,7 +28,7 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   void initState() {
     super.initState();
-    type = widget.type;
+    text = widget.text;
     startTimer();
   }
 
@@ -70,7 +70,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
     return Scaffold(
       appBar: AppBarOnboarding(
-        text: "Sign Up as a $type",
+        text: text,
         isBackButtonVisible: true,
       ),
       backgroundColor: Colors.white,

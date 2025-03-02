@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/components/signup.dart';
 import 'package:healthcare/views/screens/common/otpEntry.dart';
+import 'package:healthcare/views/screens/common/signin.dart';
 
 class SignUp extends StatefulWidget {
   final String type;
@@ -68,19 +70,39 @@ class _SignUpState extends State<SignUp> {
               },
             ),
             SizedBox(height: 20),
-            GestureDetector(
+            InkWell(
               onTap:
                   privacyAccepted
                       ? () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OTPScreen(type: type),
+                            builder: (context) => OTPScreen(text: "Sign Up as a $type"),
                           ),
                         );
                       }
                       : null,
-              child: ProceedButton(isEnabled: privacyAccepted, text: 'Send OTP'),
+              child: ProceedButton(
+                isEnabled: privacyAccepted,
+                text: 'Send OTP',
+              ),
+            ),
+            SizedBox(height: 30),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignIN()),
+                );
+              },
+              child: Text(
+                'Already have an account? Sign In',
+                style: GoogleFonts.poppins(
+                  decoration: TextDecoration.underline,
+                  color: Color.fromRGBO(0, 0, 0, 0.6),
+                  fontSize: 14,
+                ),
+              ),
             ),
           ],
         ),
