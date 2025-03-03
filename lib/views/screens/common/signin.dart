@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/components/signup.dart';
+import 'package:healthcare/views/screens/bottom_navigation_bar.dart';
 import 'package:healthcare/views/screens/common/otpEntry.dart';
 
 class SignIN extends StatelessWidget {
@@ -54,15 +55,23 @@ class SignIN extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => SignIN()),
                 );
               },
-              child: Text(
-                'Don\'t have an account? Sign Up',
-                style: GoogleFonts.poppins(
+                child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
+                  );
+                },
+                child: Text(
+                  'Don\'t have an account? Sign Up',
+                  style: GoogleFonts.poppins(
                   decoration: TextDecoration.underline,
                   color: Color.fromRGBO(0, 0, 0, 0.6),
                   fontSize: 14,
+                  ),
+                ),
                 ),
               ),
-            ),
           ],
         ),
       ),
