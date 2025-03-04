@@ -5,6 +5,7 @@ import 'package:healthcare/views/screens/menu/faqs.dart';
 import 'package:healthcare/views/screens/menu/payment_method.dart';
 import 'package:healthcare/views/screens/menu/profile_update.dart';
 import 'package:healthcare/views/screens/menu/withdrawal_history.dart';
+import 'package:healthcare/views/screens/onboarding/onboarding_3.dart';
 
 
 class MenuScreen extends StatefulWidget {
@@ -95,6 +96,12 @@ class _MenuScreenState extends State<MenuScreen> {
         onTap: () {
           if (item.screen != null) {
             Navigator.push(context, MaterialPageRoute(builder: (context) => item.screen!));
+          }
+          if (item.title == "Logout") {
+            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Onboarding3()),
+                    );
           }
         },
       ),
