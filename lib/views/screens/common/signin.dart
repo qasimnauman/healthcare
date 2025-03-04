@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/components/signup.dart';
-import 'package:healthcare/views/screens/bottom_navigation_bar.dart';
 import 'package:healthcare/views/screens/common/otpEntry.dart';
+import 'package:healthcare/views/screens/complete_profile/profile1.dart';
 
 class SignIN extends StatelessWidget {
   const SignIN({super.key});
@@ -59,7 +59,7 @@ class SignIN extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
+                  MaterialPageRoute(builder: (context) => CompleteProfileScreen()),
                   );
                 },
                 child: Text(
