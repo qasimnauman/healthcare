@@ -22,26 +22,33 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            _buildAnalyticsCard(
-              icon: Icons.show_chart,
-              title: "Performance Analysis",
-              color: Color.fromRGBO(255,	197,	23, 5),
-            ),
-            _buildAnalyticsCard(
-              icon: Icons.bar_chart,
-              title: "Financial Analytics",
-              color: Colors.orange,
-            ),
-            _buildAnalyticsCard(
-              icon: Icons.person,
-              title: "Patients",
-              color: Colors.grey,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              _buildAnalyticsCard(
+                icon: Icons.show_chart,
+                title: "Performance Analysis",
+                color: Color.fromRGBO(255,	197,	23, 5),
+              ),
+              _buildAnalyticsCard(
+                icon: Icons.bar_chart,
+                title: "Financial Analytics",
+                color: Colors.orange,
+              ),
+              _buildAnalyticsCard(
+                icon: Icons.person,
+                title: "Patients",
+                color: Colors.grey,
+              ),
+              _buildAnalyticsCard(
+                icon: Icons.report, 
+                title: "Reports", 
+                color: Colors.grey
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -60,8 +67,10 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 8),
               Icon(icon, size: 32, color: Colors.black),
               SizedBox(width: 12),
               Text(

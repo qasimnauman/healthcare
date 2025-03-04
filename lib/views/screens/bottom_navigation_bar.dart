@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/views/screens/dashboard/analytics.dart';
+import 'package:healthcare/views/screens/dashboard/finances.dart';
 import 'package:healthcare/views/screens/dashboard/home.dart';
+import 'package:healthcare/views/screens/dashboard/menu.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
   const BottomNavigationBarScreen({super.key});
@@ -15,8 +17,8 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     AnalyticsScreen(),
-    const Text('Profile Page'),
-    const Text('Menu Page'),
+    FinancesScreen(),
+    MenuScreen(),
   ];
 
   void _onItemTapped(int index) {
