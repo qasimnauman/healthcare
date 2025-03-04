@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/views/screens/menu/appointment_history.dart';
+import 'package:healthcare/views/screens/menu/availability.dart';
+import 'package:healthcare/views/screens/menu/faqs.dart';
+import 'package:healthcare/views/screens/menu/payment_method.dart';
+import 'package:healthcare/views/screens/menu/profile_update.dart';
+import 'package:healthcare/views/screens/menu/withdrawal_history.dart';
 
 
 class MenuScreen extends StatefulWidget {
@@ -8,12 +14,12 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final List<MenuItem> menuItems = [
-    MenuItem("Edit Profile", Icons.person_outline),
-    MenuItem("Update Availability", Icons.calendar_today_outlined),
-    MenuItem("Appointments History", Icons.history),
-    MenuItem("Payment Methods", Icons.credit_card),
-    MenuItem("FAQs", Icons.help_outline),
-    MenuItem("Withdrawal History", Icons.money),
+    MenuItem("Edit Profile", Icons.person_outline, ProfileEditorScreen()),
+    MenuItem("Update Availability", Icons.calendar_today_outlined, SetAvailabilityScreen()),
+    MenuItem("Appointments History", Icons.history, AppointmentHistoryScreen()),
+    MenuItem("Payment Methods", Icons.credit_card, PaymentMethodsScreen()),
+    MenuItem("FAQs", Icons.help_outline, FAQScreen()),
+    MenuItem("Withdrawal History", Icons.money, WithdrawalHistoryScreen()),
     MenuItem("Help Center", Icons.support_agent),
     MenuItem("Logout", Icons.logout),
   ];
@@ -86,7 +92,11 @@ class _MenuScreenState extends State<MenuScreen> {
         leading: Icon(item.icon, color: Colors.blue),
         title: Text(item.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
         trailing: Icon(Icons.arrow_forward_ios, size: 18),
-        onTap: () {},
+        onTap: () {
+          if (item.screen != null) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => item.screen!));
+          }
+        },
       ),
     );
   }
@@ -95,6 +105,7 @@ class _MenuScreenState extends State<MenuScreen> {
 class MenuItem {
   final String title;
   final IconData icon;
+  final Widget? screen;
 
-  MenuItem(this.title, this.icon);
+  MenuItem(this.title, this.icon, [this.screen]);
 }
