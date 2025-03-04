@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/views/screens/analytics/financial_analysis.dart';
+import 'package:healthcare/views/screens/analytics/patients.dart';
+import 'package:healthcare/views/screens/analytics/performance_analysis.dart';
+import 'package:healthcare/views/screens/analytics/reports.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   @override
@@ -11,16 +15,13 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
         title: Text(
           "Analytics",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -31,21 +32,45 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 icon: Icons.show_chart,
                 title: "Performance Analysis",
                 color: Color.fromRGBO(255,	197,	23, 5),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PerformanceAnalysis()),
+                    );
+                },
               ),
               _buildAnalyticsCard(
                 icon: Icons.bar_chart,
                 title: "Financial Analytics",
                 color: Colors.orange,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FinancialAnalyticsScreen()),
+                    );
+                },
               ),
-              _buildAnalyticsCard(
+                _buildAnalyticsCard(
                 icon: Icons.person,
                 title: "Patients",
                 color: Colors.grey,
-              ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PatientsScreen()),
+                    );
+                },
+                ),
               _buildAnalyticsCard(
                 icon: Icons.report, 
                 title: "Reports", 
-                color: Colors.grey
+                color: Colors.grey,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ReportsScreen()),
+                    );
+                },
               ),
             ],
           ),
@@ -55,7 +80,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
   }
 
   Widget _buildAnalyticsCard(
-      {required IconData icon, required String title, required Color color}) {
+      {required IconData icon, required String title, required Color color, VoidCallback? onPressed}) {
     return Container(
       margin: EdgeInsets.only(bottom: 16),
       padding: EdgeInsets.all(16),
@@ -74,12 +99,15 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
               Icon(icon, size: 32, color: Colors.black),
               SizedBox(width: 12),
               Text(
-                title,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          title,
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
           ),
-          Icon(Icons.arrow_forward, size: 28, color: Colors.black),
+          IconButton(
+            icon: Icon(Icons.arrow_forward, size: 28, color: Colors.black),
+            onPressed: onPressed,
+          ),
         ],
       ),
     );
