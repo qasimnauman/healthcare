@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare/views/screens/appointment/all_appoinments.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -118,9 +119,17 @@ class _HomeScreenState extends State<HomeScreen> {
             // Upcoming Appointments
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+                children: [
                 Text("Upcoming Appointments", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text("See all", style: TextStyle(color: Colors.blue)),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AppointmentsScreen()),
+                    );
+                  },
+                  child: Text("See all", style: TextStyle(color: Colors.blue)),
+                ),
               ],
             ),
             SizedBox(height: 8),
