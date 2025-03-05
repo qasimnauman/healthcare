@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/menu/availability/add_availability.dart';
+import 'package:healthcare/views/screens/menu/availability/remove_availability.dart';
 
 class SetAvailabilityScreen extends StatelessWidget {
   const SetAvailabilityScreen({super.key});
@@ -39,21 +40,19 @@ class SetAvailabilityScreen extends StatelessWidget {
                 Color.fromRGBO(64, 124, 226, 1),
                 () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddAvailabilityScreen(),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 16),
-              _buildButton(
-                "Update Existing Availability",
-                Color.fromRGBO(64, 124, 226, 1),
-                () {},
-              ),
-            ],
-          ),
+                      context,
+                      MaterialPageRoute(builder: (context) => AddAvailabilityScreen()),
+                    );
+                }),
+                const SizedBox(height: 16),
+                _buildButton("Update Existing Availability", Color.fromRGBO(64, 124, 226, 1), () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RemoveAvailability()),
+                    );
+                }),
+              ],
+            ),
         ),
       ),
     );
