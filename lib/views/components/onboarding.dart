@@ -27,7 +27,8 @@ class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
                 ),
               )
               : null,
-      backgroundColor: isBackButtonVisible ? Colors.white : null,
+      // backgroundColor: isBackButtonVisible ? Colors.white : null,
+      backgroundColor: Colors.white,
       title: text.isNotEmpty
           ? Text(
               text,
@@ -53,7 +54,7 @@ class NavSkipText extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Onboarding3()),
         );
@@ -171,7 +172,7 @@ class OnboardingNavigation extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.arrow_forward, color: Colors.white, size: 30),
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => destination),
                   );

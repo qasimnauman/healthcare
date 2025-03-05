@@ -11,7 +11,7 @@ class Onboarding3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarOnboarding(text: '', isBackButtonVisible: true),
+      appBar: AppBarOnboarding(text: '', isBackButtonVisible: false),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
