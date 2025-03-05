@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 
 class PerformanceAnalysis extends StatelessWidget {
   const PerformanceAnalysis({super.key});
@@ -7,51 +8,40 @@ class PerformanceAnalysis extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Performance Analytics",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Performance Analysis",
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Appointments",
-              style: GoogleFonts.poppins(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Appointments",
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Image.asset('assets/images/appointments_graph.png'),
-            const SizedBox(height: 20),
-            Image.asset('assets/images/cancelled_appointments.png'),
-            const SizedBox(height: 30),
-            _buildRatingsCard(),
-          ],
+              const SizedBox(height: 10),
+              Image.asset('assets/images/appointments_graph.png'),
+              const SizedBox(height: 20),
+              Image.asset('assets/images/cancelled_appointments.png'),
+              const SizedBox(height: 30),
+              _buildRatingsCard(context),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildRatingsCard() {
+  Widget _buildRatingsCard(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width * 0.82,
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       decoration: BoxDecoration(
         color: Color.fromRGBO(64, 124, 226, 1),

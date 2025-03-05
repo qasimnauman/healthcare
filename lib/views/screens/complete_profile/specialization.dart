@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/screens/bottom_navigation_bar.dart';
-import 'package:healthcare/views/screens/dashboard/home.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 

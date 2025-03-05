@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 
 class PatientsScreen extends StatelessWidget {
   const PatientsScreen({super.key});
@@ -40,24 +41,7 @@ class PatientsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Patients",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+      appBar: AppBarOnboarding(isBackButtonVisible: true, text: "Patients"),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -87,16 +71,17 @@ class PatientsScreen extends StatelessWidget {
   }
 
   Widget _buildSearchBar() {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: "Search Patient",
-        prefixIcon: const Icon(Icons.search, color: Colors.black54),
-        filled: true,
-        fillColor: Colors.grey.shade200,
-        contentPadding: const EdgeInsets.symmetric(vertical: 14),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(25),
-          borderSide: BorderSide.none,
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(25),
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Search Patients",
+          border: InputBorder.none,
+          icon: Icon(Icons.search_outlined, color: Colors.grey, size: 30),
         ),
       ),
     );
@@ -104,32 +89,55 @@ class PatientsScreen extends StatelessWidget {
 
   Widget _buildFilters() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _buildFilterButton(Icons.filter_list, "Filters", Colors.white),
-        _buildFilterButton(Icons.star, "4 +", Colors.white),
-        _buildFilterButton(Icons.location_on, "Islamabad", Colors.white),
+        _buildFilterButton(Icons.filter_list, "Filters", Colors.white, false),
+        _buildFilterButton(Icons.star, "4 +", Colors.white, true),
+        _buildFilterButton(Icons.location_on, "Islamabad", Colors.white, true),
       ],
     );
   }
 
-  Widget _buildFilterButton(IconData icon, String label, Color bgColor) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(3),
-        border: Border.all(color: Colors.blue),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.grey.shade400, size: 18),
-          const SizedBox(width: 6),
-          Text(
-            label,
-            style: GoogleFonts.poppins(color: Colors.grey, fontSize: 14),
+  Widget _buildFilterButton(
+    IconData icon,
+    String label,
+    Color bgColor,
+    bool isSelected,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(3),
+          border: Border.all(
+            color: isSelected ? Colors.blue : Colors.grey.shade300,
           ),
-        ],
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color:
+                  isSelected || label == "Filters"
+                      ? Colors.grey.shade600
+                      : Colors.grey.shade300,
+              size: 18,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: GoogleFonts.poppins(
+                color:
+                    isSelected || label == "Filters"
+                        ? Colors.grey.shade600
+                        : Colors.grey.shade300,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
