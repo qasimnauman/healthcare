@@ -48,16 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       "Welcome",
                       style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
                     Text(
                       "Dr. Asmara",
                       style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 26,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
@@ -76,11 +76,19 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromRGBO(158, 158, 158, 0.3),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  ),
+                ],
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image(image: AssetImage("assets/images/earnings.png")),
+                  Icon(Icons.paid_outlined, color: Colors.white, size: 50),
+                  // Image(image: AssetImage("assets/images/earnings.png")),
                   SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -173,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   "Upcoming Appointments",
                   style: GoogleFonts.poppins(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 TextButton(
@@ -187,7 +195,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Text(
                     "See all",
-                    style: GoogleFonts.poppins(color: Colors.blue),
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
               ],
@@ -216,7 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         "Appointment with Hania",
                         style: GoogleFonts.poppins(
                           fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5,
                           color: Colors.black,
                         ),
                       ),
@@ -224,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         "Jan 10, 2025\n12:00 pm - 1:00 pm",
                         style: GoogleFonts.poppins(
                           fontSize: 12,
-                          color: Colors.grey,
+                          color: Color.fromRGBO(34, 31, 31, 0.8),
                         ),
                       ),
                     ],
