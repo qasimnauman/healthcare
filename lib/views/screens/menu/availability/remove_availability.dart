@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class RemoveAvailability extends StatefulWidget {
   const RemoveAvailability({super.key});
 
   @override
-  _RemoveAvailabilityState createState() => _RemoveAvailabilityState();
+  State<RemoveAvailability> createState() => _RemoveAvailabilityState();
 }
 
 class _RemoveAvailabilityState extends State<RemoveAvailability> {
@@ -13,28 +15,23 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
   String? _selectedTime;
 
   final List<String> _timeSlots = [
-    "09:00 AM", "10:00 AM", "11:00 AM",
-    "01:00 PM", "02:00 PM", "03:00 PM",
-    "04:00 PM", "07:00 PM", "08:00 PM"
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "01:00 PM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+    "07:00 PM",
+    "08:00 PM",
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          "Add Availability",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Update Availability",
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -86,10 +83,13 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
             shape: BoxShape.circle,
           ),
         ),
-        headerStyle: const HeaderStyle(
+        headerStyle: HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
-          titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          titleTextStyle: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
         onDaySelected: (selectedDay, focusedDay) {
@@ -102,40 +102,64 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
   }
 
   Widget _buildTimeSlots() {
-    return Wrap(
-      spacing: 12,
-      runSpacing: 12,
-      alignment: WrapAlignment.center,
-      children: _timeSlots.map((time) {
-        bool isSelected = time == _selectedTime;
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              _selectedTime = time;
-            });
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-            decoration: BoxDecoration(
-              color: isSelected ? Color.fromRGBO(64, 124, 226, 1) : Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Color.fromRGBO(64, 124, 226, 1)),
-            ),
-            child: Text(
-              time,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
-              ),
-            ),
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 8,
+            spreadRadius: 2,
+            offset: const Offset(0, 2),
           ),
-        );
-      }).toList(),
+        ],
+      ),
+      child: Wrap(
+        spacing: 12,
+        runSpacing: 12,
+        alignment: WrapAlignment.spaceEvenly,
+        children:
+            _timeSlots.map((time) {
+              bool isSelected = time == _selectedTime;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _selectedTime = time;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 15,
+                  ),
+                  decoration: BoxDecoration(
+                    color:
+                        isSelected
+                            ? Color.fromRGBO(64, 124, 226, 1)
+                            : Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Color.fromRGBO(64, 124, 226, 1)),
+                  ),
+                  child: Text(
+                    time,
+                    style: TextStyle(
+                      color: isSelected ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+      ),
     );
   }
 
   Widget _buildSubmitButton() {
     return SizedBox(
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width * 0.8,
       height: 50,
       child: ElevatedButton(
         onPressed: () {},
@@ -145,9 +169,13 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           "Remove Availability",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );

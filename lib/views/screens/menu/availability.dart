@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/screens/menu/availability/add_availability.dart';
 import 'package:healthcare/views/screens/menu/availability/remove_availability.dart';
 
@@ -9,23 +10,9 @@ class SetAvailabilityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Set Availability",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: AppBarOnboarding(
+        text: "Availability",
+        isBackButtonVisible: true,
       ),
       backgroundColor: Colors.white,
       body: Padding(
@@ -37,7 +24,7 @@ class SetAvailabilityScreen extends StatelessWidget {
             children: [
               _buildButton(
                 "Add New Availability",
-                Color.fromRGBO(64, 124, 226, 1),
+                Color.fromRGBO(64, 123, 255, 1),
                 () {
                   Navigator.push(
                       context,
@@ -45,7 +32,7 @@ class SetAvailabilityScreen extends StatelessWidget {
                     );
                 }),
                 const SizedBox(height: 16),
-                _buildButton("Update Existing Availability", Color.fromRGBO(64, 124, 226, 1), () {
+                _buildButton("Update Existing Availability", Color.fromRGBO(64, 123, 255, 1), () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => RemoveAvailability()),

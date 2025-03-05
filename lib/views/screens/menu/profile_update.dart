@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -33,23 +34,9 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Update Profile",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: AppBarOnboarding(
+        text: "Update Profile",
+        isBackButtonVisible: true,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -95,7 +82,7 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
                   ElevatedButton(
                     onPressed: _pickImage,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
+                      backgroundColor: Color.fromRGBO(64, 123, 255, 1),
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -107,8 +94,10 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
                   OutlinedButton(
                     onPressed: _deleteImage,
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.blue,
-                      side: const BorderSide(color: Colors.blue),
+                      foregroundColor: Color.fromRGBO(64, 123, 255, 1),
+                      side: const BorderSide(
+                        color: Color.fromRGBO(64, 123, 255, 1),
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -128,7 +117,8 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
+                    minimumSize: Size(200, 40),
+                    backgroundColor: Color.fromRGBO(64, 123, 255, 1),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 40,
@@ -138,7 +128,10 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: const Text("Update"),
+                  child: Text("Update", style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),),
                 ),
               ),
             ],
@@ -155,7 +148,7 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
         Text(
           label,
           style: GoogleFonts.poppins(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             fontSize: 16,
             color: Colors.black,
           ),
@@ -164,10 +157,10 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
         TextField(
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.grey.shade200,
+            fillColor: Colors.grey.shade100,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey.shade200),
+              borderSide: BorderSide(color: Colors.grey.shade300),
             ),
           ),
         ),
