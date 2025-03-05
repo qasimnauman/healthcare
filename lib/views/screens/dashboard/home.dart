@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Color.fromRGBO(64, 124, 226, 1),
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.thumb_up, color: Colors.blue),
+                      Icon(Icons.thumb_up, color: Color.fromRGBO(64, 124, 226, 1)),
                       SizedBox(width: 8),
                       Text(
                         "Overall Ratings",
@@ -153,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: GoogleFonts.poppins(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Color.fromRGBO(64, 124, 226, 1),
                         ),
                       ),
                       SizedBox(width: 8),
@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     "See all",
                     style: GoogleFonts.poppins(
                       fontSize: 14,
-                      color: Colors.blue,
+                      color: Color.fromRGBO(64, 124, 226, 1),
                     ),
                   ),
                 ),

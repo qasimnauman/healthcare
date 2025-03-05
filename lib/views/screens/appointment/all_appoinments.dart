@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/screens/appointment/appointment_detail.dart';
 
 class AppointmentsScreen extends StatelessWidget {
@@ -16,22 +17,9 @@ class AppointmentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(
-          "Appointments",
-          style: GoogleFonts.poppins(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        centerTitle: true,
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Appointments",
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -64,7 +52,7 @@ class AppointmentsScreen extends StatelessWidget {
         decoration: InputDecoration(
           hintText: "Search patient reports",
           border: InputBorder.none,
-          icon: Icon(Icons.search, color: Colors.grey),
+          icon: Icon(Icons.search_outlined, color: Colors.grey, size: 30),
         ),
       ),
     );
@@ -90,21 +78,21 @@ class AppointmentsScreen extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(0, 0, 0, 7.5),
+                      color: Colors.black,
                     ),
                   ),
                   SizedBox(height: 5),
                   Text(
                     appointment.date,
                     style: GoogleFonts.poppins(
-                      color: Colors.grey,
+                      color: Colors.black,
                       fontSize: 12,
                     ),
                   ),
                   Text(
                     appointment.time,
                     style: GoogleFonts.poppins(
-                      color: Colors.grey,
+                      color: Colors.black,
                       fontSize: 12,
                     ),
                   ),
@@ -113,11 +101,11 @@ class AppointmentsScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                _buildActionButton("Join Session", Colors.blue, () {
+                _buildActionButton("Join Session", Color.fromRGBO(64, 124, 226, 1), () {
                   debugPrint("Joining session for ${appointment.patientName}");
                 }),
                 SizedBox(height: 8),
-                _buildActionButton("Details", Colors.blue, () {
+                _buildActionButton("Details", Color.fromRGBO(64, 124, 226, 1), () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -139,7 +127,7 @@ class AppointmentsScreen extends StatelessWidget {
     VoidCallback? onPressed,
   ]) {
     return SizedBox(
-      width: 120, // Set a fixed width
+      width: 130, // Set a fixed width
       height: 40, // Set a fixed height (optional for uniformity)
       child: ElevatedButton(
         onPressed: onPressed ?? () {},
@@ -150,6 +138,7 @@ class AppointmentsScreen extends StatelessWidget {
         child: Text(
           label,
           style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
+          textAlign: TextAlign.center,  
         ),
       ),
     );

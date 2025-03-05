@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
+import 'package:healthcare/views/screens/bottom_navigation_bar.dart';
 import 'package:healthcare/views/screens/dashboard/home.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -137,21 +139,9 @@ class _CompleteMedicalDocumentsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
-        title: Text(
-          "Complete your Profile",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Complete Your Profile",
       ),
       backgroundColor: Colors.white,
       body: Padding(
@@ -229,7 +219,7 @@ void popUpSucess(BuildContext context) {
         () => Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(profileStatus: "complete"),
+            builder: (context) => const BottomNavigationBarScreen(profileStatus: "complete"),
           ),
         ),
       );

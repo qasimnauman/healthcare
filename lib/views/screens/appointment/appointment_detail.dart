@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 
 class AppointmentDetailsScreen extends StatelessWidget {
   const AppointmentDetailsScreen({super.key});
@@ -7,24 +8,28 @@ class AppointmentDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          "Appointments",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Appointments",
       ),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     icon: const Icon(Icons.arrow_back, color: Colors.black),
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //   ),
+      //   title: Text(
+      //     "Appointments",
+      //     style: GoogleFonts.poppins(
+      //       color: Colors.black,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      // ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -35,6 +40,10 @@ class AppointmentDetailsScreen extends StatelessWidget {
               color: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
+                side: BorderSide(
+                  color: Colors.grey.withOpacity(0.2),
+                  width: 1,
+                )
               ),
               elevation: 2,
               child: Padding(
@@ -177,7 +186,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
 
   Widget _buildActionButton(String label, Color color) {
     return SizedBox(
-      width: 130,
+      width: 140,
       height: 40,
       child: ElevatedButton(
         onPressed: () {},
@@ -185,7 +194,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
           backgroundColor: color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        child: Text(label, style: GoogleFonts.poppins(color: Colors.white)),
+        child: Text(label, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14)),
       ),
     );
   }
