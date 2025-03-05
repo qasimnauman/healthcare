@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/onboarding.dart';
 
 class FinancesScreen extends StatelessWidget {
   final List<TransactionItem> transactions = [
@@ -30,41 +31,32 @@ class FinancesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          "Finances",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-      ),
+      appBar: AppBarOnboarding(text: "Finances"),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _buildStatCard(
                   "Earnings this Month",
                   "Rs 15000",
-                  Colors.green,
+                  Colors.black,
+                  const Color.fromRGBO(46, 204, 113, 1), // Green shade
                   Icons.account_balance_wallet,
                 ),
                 _buildStatCard(
                   "Payment Pending",
                   "Rs 1200",
-                  Colors.orange,
+                  Colors.black,
+                  const Color.fromRGBO(243, 156, 18, 1), // Orange shade
                   Icons.swap_horiz,
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "Recent Transactions",
               style: GoogleFonts.poppins(
@@ -72,12 +64,12 @@ class FinancesScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                 itemCount: transactions.length,
                 itemBuilder: (context, index) {
-                  return _buildTransactionCard(transactions[index]);
+                  return _buildTransactionCard(context, transactions[index]);
                 },
               ),
             ),
@@ -90,12 +82,13 @@ class FinancesScreen extends StatelessWidget {
   Widget _buildStatCard(
     String title,
     String amount,
+    Color textcolor,
     Color color,
     IconData icon,
   ) {
     return Container(
       width: 160,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(12),
@@ -103,23 +96,23 @@ class FinancesScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.black, size: 28),
-          SizedBox(height: 8),
+          Icon(icon, color: textcolor, size: 28),
+          const SizedBox(height: 8),
           Text(
             title,
             style: GoogleFonts.poppins(
               fontSize: 14,
               fontWeight: FontWeight.w500,
-              color: Colors.black,
+              color: textcolor,
             ),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
             amount,
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.black,
+              color: textcolor,
             ),
           ),
         ],
@@ -127,7 +120,10 @@ class FinancesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTransactionCard(TransactionItem transaction) {
+  Widget _buildTransactionCard(
+    BuildContext context,
+    TransactionItem transaction,
+  ) {
     return Card(
       color: Colors.white,
       elevation: 2,
@@ -147,7 +143,48 @@ class FinancesScreen extends StatelessWidget {
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(transaction.amount),
-        trailing: Icon(Icons.more_vert),
+        trailing: PopupMenuButton<int>(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(color: Colors.grey.shade200),
+          ),
+          onSelected: (value) {
+            if (value == 1) {
+              // Handle Download Report
+              debugPrint("Download Report clicked");
+            } else if (value == 2) {
+              // Handle Edit Report
+              debugPrint("Edit Report clicked");
+            }
+          },
+          itemBuilder:
+              (context) => [
+                PopupMenuItem(
+                  value: 1,
+                  child: Text(
+                    "Download Reciept",
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 2,
+                  child: Text(
+                    "View Reciept",
+                    style: GoogleFonts.poppins(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ],
+          icon: const Icon(Icons.more_vert), // Three-dot menu icon
+        ),
       ),
     );
   }
