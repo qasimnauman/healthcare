@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/dashboard/home.dart';
@@ -190,13 +193,7 @@ class _CompleteMedicalDocumentsScreenState
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => HomeScreen(profileStatus: "complete"),
-                    ),
-                  );
+                  popUpSucess(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromRGBO(64, 124, 226, 1),
@@ -205,7 +202,7 @@ class _CompleteMedicalDocumentsScreenState
                   ),
                 ),
                 child: Text(
-                  "Finish Profile",
+                  "Finish Profile Set Up",
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -219,4 +216,104 @@ class _CompleteMedicalDocumentsScreenState
       ),
     );
   }
+}
+
+void popUpSucess(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible:
+        false, // Prevent closing the dialog when tapping outside
+    builder: (BuildContext context) {
+      Timer(
+        Duration(seconds: 3),
+        () => Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomeScreen(profileStatus: "complete"),
+          ),
+        ),
+      );
+
+      return Stack(
+        children: [
+          // Blurred background effect
+          BackdropFilter(
+            filter: ImageFilter.blur(
+              sigmaX: 5,
+              sigmaY: 5,
+            ), // Adjust blur intensity
+            child: Container(
+              color: const Color.fromARGB(
+                30,
+                0,
+                0,
+                0,
+              ), // Darken background slightly
+            ),
+          ),
+          AlertDialog(
+            backgroundColor: const Color.fromRGBO(64, 124, 226, 1),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 30, bottom: 20),
+              child: Center(
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.task_alt_rounded,
+                      size: 75,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      "Profile Completed Successfully",
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // actions: [
+            //   InkWell(
+            //     onTap: () {
+            //       Navigator.of(context).pop();
+            //       Navigator.of(context).push(
+            //         MaterialPageRoute(builder: (context) => const HomeScreen()),
+            //       );
+            //     },
+            //     child: Center(
+            //       child: Container(
+            //         decoration: BoxDecoration(
+            //           borderRadius: BorderRadius.circular(32),
+            //           color: const Color.fromRGBO(217, 217, 217, 1),
+            //           boxShadow: [
+            //             BoxShadow(
+            //               color: const Color.fromRGBO(0, 0, 0, 0.25),
+            //               blurRadius: 4,
+            //               offset: const Offset(0, 4),
+            //             ),
+            //           ],
+            //         ),
+            //         width: 100,
+            //         padding: EdgeInsets.symmetric(vertical: 10),
+            //         child: Center(
+            //           child: Text(
+            //             "Proceed",
+            //             style: GoogleFonts.poppins(
+            //               fontSize: 16,
+            //               color: Colors.black,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ],
+          ),
+        ],
+      );
+    },
+  );
 }
