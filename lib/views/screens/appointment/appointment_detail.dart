@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppointmentDetailsScreen extends StatelessWidget {
   const AppointmentDetailsScreen({super.key});
@@ -13,9 +14,12 @@ class AppointmentDetailsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Appointments",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -38,10 +42,10 @@ class AppointmentDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Center(
+                    Center(
                       child: Text(
                         "Appointment with Hania",
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(0, 0, 0, 7.5),
@@ -58,46 +62,52 @@ class AppointmentDetailsScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    const Text(
+                    Text(
                       "About Patient",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut laore et dolore magna aliqua. Ut enim ad minim veniam... ",
-                      style: TextStyle(fontSize: 14, color: Colors.black54),
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
                     ),
                     const SizedBox(height: 4),
-                    const Text(
+                    Text(
                       "Read more",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 30),
-                    const Text(
+                    Text(
                       "Additional Notes",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut laore et dolore magna aliqua. Ut enim ad minim veniam...",
-                      style: TextStyle(fontSize: 14, color: Colors.black54),
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
                     ),
                     const SizedBox(height: 4),
-                    const Text(
+                    Text(
                       "Read more",
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -107,7 +117,10 @@ class AppointmentDetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildActionButton("Copy Invite", Color.fromRGBO(64, 124, 226, 1)),
+                        _buildActionButton(
+                          "Copy Invite",
+                          Color.fromRGBO(64, 124, 226, 1),
+                        ),
                         _buildActionButton("Reschedule", Colors.red),
                       ],
                     ),
@@ -123,9 +136,12 @@ class AppointmentDetailsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        child: const Text(
+                        child: Text(
                           "Join Session",
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
@@ -152,7 +168,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             text,
-            style: const TextStyle(color: Colors.white, fontSize: 14),
+            style: GoogleFonts.poppins(color: Colors.white, fontSize: 14),
           ),
         ],
       ),
@@ -169,7 +185,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
           backgroundColor: color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-        child: Text(label, style: const TextStyle(color: Colors.white)),
+        child: Text(label, style: GoogleFonts.poppins(color: Colors.white)),
       ),
     );
   }

@@ -1,14 +1,34 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/onboarding/onboarding_1.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(
+      Duration(seconds: 2),
+      () => Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Onboarding1()),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(159, 179, 255, 1),
+      backgroundColor: const Color.fromRGBO(159, 179, 255, 1),
       body: Stack(
         children: [
           Positioned(
@@ -16,7 +36,7 @@ class SplashScreen extends StatelessWidget {
             right: 20,
             child: Image.asset(
               "assets/images/capsules.png",
-              opacity: AlwaysStoppedAnimation(0.7),
+              opacity: const AlwaysStoppedAnimation(0.7),
             ),
           ),
           Positioned(
@@ -25,7 +45,7 @@ class SplashScreen extends StatelessWidget {
             child: Image.asset(
               "assets/images/tablets.png",
               scale: 0.8,
-              opacity: AlwaysStoppedAnimation(0.7),
+              opacity: const AlwaysStoppedAnimation(0.7),
             ),
           ),
           Positioned(
@@ -34,7 +54,7 @@ class SplashScreen extends StatelessWidget {
             child: Image.asset(
               "assets/images/bandage.png",
               scale: 0.9,
-              opacity: AlwaysStoppedAnimation(0.7),
+              opacity: const AlwaysStoppedAnimation(0.7),
             ),
           ),
           Positioned(
@@ -42,7 +62,7 @@ class SplashScreen extends StatelessWidget {
             left: 0,
             child: Image.asset(
               "assets/images/sethoscope.png",
-              opacity: AlwaysStoppedAnimation(0.6),
+              opacity: const AlwaysStoppedAnimation(0.6),
             ),
           ),
           Align(
@@ -58,17 +78,6 @@ class SplashScreen extends StatelessWidget {
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Onboarding1(),
-                      ),
-                    );
-                  },
-                  child: const Text("Get Started"),
                 ),
               ],
             ),

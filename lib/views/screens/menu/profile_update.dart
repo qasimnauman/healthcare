@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -13,8 +14,9 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
   File? _image;
 
   Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
@@ -38,9 +40,12 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Update Profile",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -56,55 +61,60 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: _image != null
-                          ? FileImage(_image!)
-                          : const AssetImage("assets/images/User.png")
-                              as ImageProvider,
-                    ),
-                    const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Profile Picture",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage:
+                        _image != null
+                            ? FileImage(_image!)
+                            : const AssetImage("assets/images/User.png")
+                                as ImageProvider,
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Profile Picture",
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
-                        SizedBox(height: 5),
-                        const Text(
-                          "PNG, JPEG under 5MB",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                    
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        "PNG, JPEG under 5MB",
+                        style: GoogleFonts.poppins(color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(height: 10),
               Row(
                 children: [
                   ElevatedButton(
-                              onPressed: _pickImage,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
-                                foregroundColor: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: const Text("Upload New"),
-                            ),
-                        const SizedBox(width: 8),
-                            OutlinedButton(
-                              onPressed: _deleteImage,
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: Colors.blue,
-                                side: const BorderSide(color: Colors.blue),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: const Text("Delete"),
-                            ),
+                    onPressed: _pickImage,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text("Upload New"),
+                  ),
+                  const SizedBox(width: 8),
+                  OutlinedButton(
+                    onPressed: _deleteImage,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.blue,
+                      side: const BorderSide(color: Colors.blue),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text("Delete"),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -120,10 +130,13 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 12,
+                    ),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                   ),
                   child: const Text("Update"),
                 ),
@@ -141,8 +154,11 @@ class _ProfileEditorScreenState extends State<ProfileEditorScreen> {
       children: [
         Text(
           label,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),
+          style: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: Colors.black,
+          ),
         ),
         const SizedBox(height: 5),
         TextField(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/complete_profile/education.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -7,7 +8,7 @@ class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({super.key});
 
   @override
-  _CompleteProfileScreenState createState() => _CompleteProfileScreenState();
+  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
 }
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
@@ -51,13 +52,29 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(label, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+                  Text(
+                    label,
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  const Text(".pdf, .png, .jpg, .jpeg (Max: 5MB)", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  Text(
+                    ".pdf, .png, .jpg, .jpeg (Max: 5MB)",
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ],
               ),
             ),
-            Icon(file == null ? Icons.cloud_upload_outlined : Icons.check_circle, color: file == null ? Colors.grey : Colors.green, size: 28),
+            Icon(
+              file == null ? Icons.cloud_upload_outlined : Icons.check_circle,
+              color: file == null ? Colors.grey : Colors.green,
+              size: 28,
+            ),
           ],
         ),
       ),
@@ -74,9 +91,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Complete your Profile",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -97,20 +117,34 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Colors.grey.shade300),
                 ),
-                child: _profileImage == null
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.person_outline, color: Colors.grey, size: 40),
-                          SizedBox(height: 8),
-                          Text("Profile Picture", style: TextStyle(color: Colors.grey)),
-                          Text(".png, .jpeg, .jpg (Max: 2MB)", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                        ],
-                      )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.file(_profileImage!, fit: BoxFit.cover),
-                      ),
+                child:
+                    _profileImage == null
+                        ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.person_outline,
+                              color: Colors.grey,
+                              size: 40,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              "Profile Picture",
+                              style: GoogleFonts.poppins(color: Colors.grey),
+                            ),
+                            Text(
+                              ".png, .jpeg, .jpg (Max: 2MB)",
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        )
+                        : ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.file(_profileImage!, fit: BoxFit.cover),
+                        ),
               ),
             ),
             const SizedBox(height: 20),
@@ -124,7 +158,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CompleteEducationScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => CompleteEducationScreen(),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -133,9 +169,13 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   "Next",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

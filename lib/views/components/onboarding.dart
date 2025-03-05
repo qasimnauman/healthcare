@@ -28,16 +28,17 @@ class AppBarOnboarding extends StatelessWidget implements PreferredSizeWidget {
               )
               : null,
       backgroundColor: isBackButtonVisible ? Colors.white : null,
-      title: text.isNotEmpty ? Text(text) : null,
-      centerTitle: text.isNotEmpty ? true : false,
-      titleTextStyle:
-          text.isNotEmpty
-              ? GoogleFonts.poppins(
+      title: text.isNotEmpty
+          ? Text(
+              text,
+              style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
-              )
-              : null,
+              ),
+            )
+          : null,
+      centerTitle: text.isNotEmpty ? true : false,
     );
   }
 

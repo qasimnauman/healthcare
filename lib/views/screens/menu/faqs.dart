@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FAQScreen extends StatefulWidget {
+  const FAQScreen({super.key});
+
   @override
-  _FAQScreenState createState() => _FAQScreenState();
+  State<FAQScreen> createState() => _FAQScreenState();
 }
 
 class _FAQScreenState extends State<FAQScreen> {
-  List<bool> _expanded = [false, false, false];
+  final List<bool> _expanded = [false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,12 @@ class _FAQScreenState extends State<FAQScreen> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "FAQ’s",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -32,7 +38,8 @@ class _FAQScreenState extends State<FAQScreen> {
         child: ListView.separated(
           padding: const EdgeInsets.all(16.0),
           itemCount: 3,
-          separatorBuilder: (context, index) => Divider(color: Colors.grey[300]),
+          separatorBuilder:
+              (context, index) => Divider(color: Colors.grey[300]),
           itemBuilder: (context, index) {
             return _buildFAQItem(index);
           },
@@ -63,20 +70,29 @@ class _FAQScreenState extends State<FAQScreen> {
                     children: [
                       Text(
                         "FAQ ${index + 1}",
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       if (_expanded[index])
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(top: 8.0),
                           child: Text(
                             "Lorem ipsum dolor sit amet consectetur. Posuere adipiscing pulvinar placerat cursus.",
-                            style: TextStyle(fontSize: 14, color: Colors.black87),
+                            style: GoogleFonts.poppins(
+                              fontSize: 14,
+                              color: Colors.black87,
+                            ),
                           ),
                         ),
                     ],
                   ),
                 ),
-                Icon(_expanded[index] ? Icons.expand_less : Icons.expand_more, color: Colors.black),
+                Icon(
+                  _expanded[index] ? Icons.expand_less : Icons.expand_more,
+                  color: Colors.black,
+                ),
               ],
             ),
           ),

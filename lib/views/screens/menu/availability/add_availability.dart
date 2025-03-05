@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AddAvailabilityScreen extends StatefulWidget {
   const AddAvailabilityScreen({super.key});
 
   @override
-  _AddAvailabilityScreenState createState() => _AddAvailabilityScreenState();
+  State<AddAvailabilityScreen> createState() => _AddAvailabilityScreenState();
 }
 
 class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
@@ -13,9 +14,15 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
   String? _selectedTime;
 
   final List<String> _timeSlots = [
-    "09:00 AM", "10:00 AM", "11:00 AM",
-    "01:00 PM", "02:00 PM", "03:00 PM",
-    "04:00 PM", "07:00 PM", "08:00 PM"
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "01:00 PM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+    "07:00 PM",
+    "08:00 PM",
   ];
 
   @override
@@ -28,9 +35,12 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Add Availability",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -86,10 +96,13 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
             shape: BoxShape.circle,
           ),
         ),
-        headerStyle: const HeaderStyle(
+        headerStyle: HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
-          titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          titleTextStyle: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
         onDaySelected: (selectedDay, focusedDay) {
@@ -106,30 +119,37 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
       spacing: 12,
       runSpacing: 12,
       alignment: WrapAlignment.center,
-      children: _timeSlots.map((time) {
-        bool isSelected = time == _selectedTime;
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              _selectedTime = time;
-            });
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-            decoration: BoxDecoration(
-              color: isSelected ? Color.fromRGBO(64, 124, 226, 1) : Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Color.fromRGBO(64, 124, 226, 1)),
-            ),
-            child: Text(
-              time,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
+      children:
+          _timeSlots.map((time) {
+            bool isSelected = time == _selectedTime;
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedTime = time;
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 15,
+                ),
+                decoration: BoxDecoration(
+                  color:
+                      isSelected
+                          ? Color.fromRGBO(64, 124, 226, 1)
+                          : Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Color.fromRGBO(64, 124, 226, 1)),
+                ),
+                child: Text(
+                  time,
+                  style: GoogleFonts.poppins(
+                    color: isSelected ? Colors.white : Colors.black,
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
-      }).toList(),
+            );
+          }).toList(),
     );
   }
 
@@ -145,9 +165,13 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: const Text(
+        child: Text(
           "Add New Availability",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );

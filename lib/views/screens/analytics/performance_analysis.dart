@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PerformanceAnalysis extends StatelessWidget {
-  const PerformanceAnalysis({Key? key}) : super(key: key);
+  const PerformanceAnalysis({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,12 @@ class PerformanceAnalysis extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Performance Analytics",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -27,9 +31,12 @@ class PerformanceAnalysis extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               "Appointments",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
             Image.asset('assets/images/appointments_graph.png'),
@@ -53,19 +60,27 @@ class PerformanceAnalysis extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Row(
+          Row(
             children: [
               Icon(Icons.star, color: Colors.white, size: 28),
               SizedBox(width: 8),
               Text(
                 "Ratings",
-                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
-          const Text(
+          Text(
             "4.7",
-            style: TextStyle(fontSize: 22, color: Colors.white, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

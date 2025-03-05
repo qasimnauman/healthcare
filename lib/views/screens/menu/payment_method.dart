@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentMethodsScreen extends StatelessWidget {
   final List<Map<String, String>> paymentMethods = [
@@ -10,7 +11,7 @@ class PaymentMethodsScreen extends StatelessWidget {
       "expiry": "12/27",
       "cvv": "333",
       "color": "0xFF71C282", // Green color
-      "icon": "bank"
+      "icon": "bank",
     },
     {
       "type": "Wallet",
@@ -18,9 +19,11 @@ class PaymentMethodsScreen extends StatelessWidget {
       "holder": "Asmara",
       "number": "0300 - 1112223",
       "color": "0xFFC2554D", // Red color
-      "icon": "wallet"
-    }
+      "icon": "wallet",
+    },
   ];
+
+  PaymentMethodsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +35,12 @@ class PaymentMethodsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Payment Methods",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -76,26 +82,35 @@ class PaymentMethodsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(
-                payment["icon"] == "bank" ? Icons.credit_card : Icons.account_balance_wallet,
+                payment["icon"] == "bank"
+                    ? Icons.credit_card
+                    : Icons.account_balance_wallet,
                 color: Colors.white,
                 size: 28,
               ),
               if (payment["cvv"] != null)
                 Text(
                   "CVV  ${payment["cvv"]}",
-                  style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
             ],
           ),
           const SizedBox(height: 8),
           Text(
             payment["name"]!,
-            style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
+            style: GoogleFonts.poppins(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
           const SizedBox(height: 8),
           Text(
             payment["holder"]!,
-            style: const TextStyle(color: Colors.black, fontSize: 14),
+            style: GoogleFonts.poppins(color: Colors.black, fontSize: 14),
           ),
           const SizedBox(height: 4),
           Row(
@@ -103,12 +118,19 @@ class PaymentMethodsScreen extends StatelessWidget {
             children: [
               Text(
                 payment["number"]!,
-                style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               if (payment["expiry"] != null)
                 Text(
                   payment["expiry"]!,
-                  style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
             ],
           ),
@@ -123,10 +145,15 @@ class PaymentMethodsScreen extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: () {},
         icon: const Icon(Icons.add, color: Color.fromRGBO(64, 124, 226, 1)),
-        label: const Text("Add New Payment Method", style: TextStyle(color: Color.fromRGBO(64, 124, 226, 1))),
+        label: Text(
+          "Add New Payment Method",
+          style: GoogleFonts.poppins(color: Color.fromRGBO(64, 124, 226, 1)),
+        ),
         style: OutlinedButton.styleFrom(
           side: const BorderSide(color: Color.fromRGBO(64, 124, 226, 1)),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         ),
       ),

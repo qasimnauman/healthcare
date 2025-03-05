@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/analytics/financial_analysis.dart';
 import 'package:healthcare/views/screens/analytics/patients.dart';
 import 'package:healthcare/views/screens/analytics/performance_analysis.dart';
 import 'package:healthcare/views/screens/analytics/reports.dart';
 
 class AnalyticsScreen extends StatefulWidget {
+  const AnalyticsScreen({super.key});
+
   @override
-  _AnalyticsScreenState createState() => _AnalyticsScreenState();
+  State<AnalyticsScreen> createState() => _AnalyticsScreenState();
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
@@ -17,7 +20,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
       appBar: AppBar(
         title: Text(
           "Analytics",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -100,7 +103,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
               SizedBox(width: 12),
               Text(
           title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ],
           ),

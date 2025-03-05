@@ -149,7 +149,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       const TextSpan(text: "I agree to the healthcare "),
                       TextSpan(
                         text: "Terms of Service",
-                        style: const TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Color.fromRGBO(34, 58, 106, 1),
                         ),
                         recognizer:
@@ -161,7 +161,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                       const TextSpan(text: " and "),
                       TextSpan(
                         text: "Privacy Policy",
-                        style: const TextStyle(
+                        style: GoogleFonts.poppins(
                           color: Color.fromRGBO(34, 58, 106, 1),
                         ),
                         recognizer:

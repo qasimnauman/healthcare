@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 // Import your custom onboarding AppBar, if needed
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/components/signup.dart';
+import 'package:healthcare/views/screens/dashboard/home.dart';
 
 class OTPScreen extends StatefulWidget {
   final String text;
@@ -62,17 +63,14 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-  
+
     final minutes = _start ~/ 60;
     final seconds = _start % 60;
     final formattedTime =
         '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
 
     return Scaffold(
-      appBar: AppBarOnboarding(
-        text: text,
-        isBackButtonVisible: true,
-      ),
+      appBar: AppBarOnboarding(text: text, isBackButtonVisible: true),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -111,8 +109,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         fillColor: Colors.grey[100],
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
-                          borderSide:
-                              BorderSide(color: Colors.grey.shade300),
+                          borderSide: BorderSide(color: Colors.grey.shade300),
                         ),
                       ),
                       onChanged: (value) {
@@ -128,34 +125,34 @@ class _OTPScreenState extends State<OTPScreen> {
             const SizedBox(height: 24),
             _start > 0
                 ? Text(
-                    "Resend OTP in $formattedTime",
+                  "Resend OTP in $formattedTime",
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black,
+                  ),
+                )
+                : TextButton(
+                  onPressed: () {
+                    debugPrint("Resend OTP pressed");
+                    // Optionally clear OTP fields
+                    setState(() {
+                      for (final controller in _controllers) {
+                        controller.clear();
+                      }
+                    });
+                    // Restart the timer after resending OTP
+                    startTimer();
+                  },
+                  child: Text(
+                    "Resend OTP",
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
-                      color: Colors.black,
-                    ),
-                  )
-                : InkWell(
-                    onTap: () {
-                      debugPrint("Resend OTP pressed");
-                      // Optionally clear OTP fields
-                      setState(() {
-                        for (final controller in _controllers) {
-                          controller.clear();
-                        }
-                      });
-                      // Restart the timer after resending OTP
-                      startTimer();
-                    },
-                    child: Text(
-                      "Resend OTP",
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.deepPurple,
-                      ),
+                      color: Colors.deepPurple,
                     ),
                   ),
+                ),
             const SizedBox(height: 24),
             // Confirm OTP button
             Container(
@@ -170,10 +167,18 @@ class _OTPScreenState extends State<OTPScreen> {
                       controller.clear();
                     }
                   });
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(
+                        profileStatus: "in complete",
+                      ),
+                    ),
+                  );
                   FocusScope.of(context).unfocus();
                 },
-                child:
-                    ProceedButton(isEnabled: true, text: "Confirm OTP"),
+                child: ProceedButton(isEnabled: true, text: "Confirm OTP"),
               ),
             ),
           ],

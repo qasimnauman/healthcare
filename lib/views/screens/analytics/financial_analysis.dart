@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FinancialAnalyticsScreen extends StatelessWidget {
   const FinancialAnalyticsScreen({super.key});
@@ -13,9 +14,12 @@ class FinancialAnalyticsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Financial Analytics",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -27,9 +31,12 @@ class FinancialAnalyticsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               "Finances",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 10),
             _buildFinanceCard(
@@ -44,14 +51,18 @@ class FinancialAnalyticsScreen extends StatelessWidget {
               amount: "Rs 50000",
             ),
             const SizedBox(height: 20),
-            Image.asset("assets/images/earnings_graph.png", fit: BoxFit.cover)
+            Image.asset("assets/images/earnings_graph.png", fit: BoxFit.cover),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildFinanceCard({required IconData icon, required String text, required String amount}) {
+  Widget _buildFinanceCard({
+    required IconData icon,
+    required String text,
+    required String amount,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       decoration: BoxDecoration(
@@ -67,17 +78,24 @@ class FinancialAnalyticsScreen extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 text,
-                style: const TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
           Text(
             amount,
-            style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
     );
   }
-
 }

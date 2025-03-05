@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/menu/availability/add_availability.dart';
 
 class SetAvailabilityScreen extends StatelessWidget {
@@ -14,32 +15,45 @@ class SetAvailabilityScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Set Availability",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
       ),
       backgroundColor: Colors.white,
-      body:  Padding(
+      body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _buildButton("Add New Availability", Color.fromRGBO(64, 124, 226, 1), () {
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildButton(
+                "Add New Availability",
+                Color.fromRGBO(64, 124, 226, 1),
+                () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddAvailabilityScreen()),
-                    );
-                }),
-                const SizedBox(height: 16),
-                _buildButton("Update Existing Availability", Color.fromRGBO(64, 124, 226, 1), () {}),
-              ],
-            ),
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddAvailabilityScreen(),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              _buildButton(
+                "Update Existing Availability",
+                Color.fromRGBO(64, 124, 226, 1),
+                () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -60,7 +74,7 @@ class SetAvailabilityScreen extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold),
         ),
       ),
     );

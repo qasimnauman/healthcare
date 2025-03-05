@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/dashboard/analytics.dart';
 import 'package:healthcare/views/screens/dashboard/finances.dart';
 import 'package:healthcare/views/screens/dashboard/home.dart';
@@ -8,7 +9,7 @@ class BottomNavigationBarScreen extends StatefulWidget {
   const BottomNavigationBarScreen({super.key});
 
   @override
-  _BottomNavigationBarScreenState createState() => _BottomNavigationBarScreenState();
+  State<BottomNavigationBarScreen> createState() => _BottomNavigationBarScreenState();
 }
 
 class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
@@ -55,7 +56,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
         ],
         currentIndex: _selectedIndex,
         unselectedItemColor: const Color.fromARGB(255, 94, 93, 93),
-        unselectedLabelStyle: TextStyle(color: Colors.grey),
+        unselectedLabelStyle: GoogleFonts.poppins(color: Colors.grey),
         selectedItemColor: Color.fromRGBO(64, 124, 226, 1),
         onTap: _onItemTapped,
       ),

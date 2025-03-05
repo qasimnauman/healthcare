@@ -1,12 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FinancesScreen extends StatelessWidget {
   final List<TransactionItem> transactions = [
-    TransactionItem("Appointment with Maheen", "Rs 1800", Colors.green, Icons.check),
-    TransactionItem("Appointment with Dr Akbar", "Rs 5500", Colors.red, Icons.close),
-    TransactionItem("Appointment with Ajmal", "Rs 2990", Colors.green, Icons.check),
+    TransactionItem(
+      "Appointment with Maheen",
+      "Rs 1800",
+      Colors.green,
+      Icons.check,
+    ),
+    TransactionItem(
+      "Appointment with Dr Akbar",
+      "Rs 5500",
+      Colors.red,
+      Icons.close,
+    ),
+    TransactionItem(
+      "Appointment with Ajmal",
+      "Rs 2990",
+      Colors.green,
+      Icons.check,
+    ),
     TransactionItem("Service Charges", "Rs 300", Colors.green, Icons.check),
   ];
+
+  FinancesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +33,10 @@ class FinancesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Finances",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
@@ -29,14 +50,27 @@ class FinancesScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildStatCard("Earnings this Month", "Rs 15000", Colors.green, Icons.account_balance_wallet),
-                _buildStatCard("Payment Pending", "Rs 1200", Colors.orange, Icons.swap_horiz),
+                _buildStatCard(
+                  "Earnings this Month",
+                  "Rs 15000",
+                  Colors.green,
+                  Icons.account_balance_wallet,
+                ),
+                _buildStatCard(
+                  "Payment Pending",
+                  "Rs 1200",
+                  Colors.orange,
+                  Icons.swap_horiz,
+                ),
               ],
             ),
             SizedBox(height: 20),
             Text(
               "Recent Transactions",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 10),
             Expanded(
@@ -53,7 +87,12 @@ class FinancesScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildStatCard(String title, String amount, Color color, IconData icon) {
+  Widget _buildStatCard(
+    String title,
+    String amount,
+    Color color,
+    IconData icon,
+  ) {
     return Container(
       width: 160,
       padding: EdgeInsets.all(16),
@@ -66,9 +105,23 @@ class FinancesScreen extends StatelessWidget {
         children: [
           Icon(icon, color: Colors.black, size: 28),
           SizedBox(height: 8),
-          Text(title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black)),
+          Text(
+            title,
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.black,
+            ),
+          ),
           SizedBox(height: 5),
-          Text(amount, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+          Text(
+            amount,
+            style: GoogleFonts.poppins(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
         ],
       ),
     );
@@ -89,7 +142,10 @@ class FinancesScreen extends StatelessWidget {
           ),
           child: Icon(transaction.icon, color: Colors.white),
         ),
-        title: Text(transaction.title, style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(
+          transaction.title,
+          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+        ),
         subtitle: Text(transaction.amount),
         trailing: Icon(Icons.more_vert),
       ),

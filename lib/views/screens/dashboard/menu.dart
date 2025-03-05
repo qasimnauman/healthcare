@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/screens/menu/appointment_history.dart';
 import 'package:healthcare/views/screens/menu/availability.dart';
 import 'package:healthcare/views/screens/menu/faqs.dart';
@@ -9,8 +10,10 @@ import 'package:healthcare/views/screens/onboarding/onboarding_3.dart';
 
 
 class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+
   @override
-  _MenuScreenState createState() => _MenuScreenState();
+  State<MenuScreen> createState() => _MenuScreenState();
 }
 
 class _MenuScreenState extends State<MenuScreen> {
@@ -46,7 +49,7 @@ class _MenuScreenState extends State<MenuScreen> {
             SizedBox(height: 10),
             Text(
               "Dr. Asmara",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 15),
             Row(
@@ -77,9 +80,9 @@ class _MenuScreenState extends State<MenuScreen> {
       children: [
         Icon(icon, color: Colors.blue, size: 30),
         SizedBox(height: 5),
-        Text(title, style: TextStyle(color: Colors.grey)),
+        Text(title, style: GoogleFonts.poppins(color: Colors.grey)),
         SizedBox(height: 3),
-        Text(value, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
+        Text(value, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
       ],
     );
   }
@@ -91,7 +94,7 @@ class _MenuScreenState extends State<MenuScreen> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: Icon(item.icon, color: Colors.blue),
-        title: Text(item.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+        title: Text(item.title, style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500)),
         trailing: Icon(Icons.arrow_forward_ios, size: 18),
         onTap: () {
           if (item.screen != null) {

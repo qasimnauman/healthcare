@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PatientsScreen extends StatelessWidget {
   const PatientsScreen({super.key});
@@ -8,31 +9,31 @@ class PatientsScreen extends StatelessWidget {
       "name": "Ali",
       "age": "29 Years",
       "location": "Bhalwal",
-      "image": "assets/images/patient_1.png"
+      "image": "assets/images/patient_1.png",
     },
     {
       "name": "Fehmida",
       "age": "30 Years",
       "location": "Rahim Yar Khan",
-      "image": "assets/images/patient_2.png"
+      "image": "assets/images/patient_2.png",
     },
     {
       "name": "Asma",
       "age": "24 Years",
       "location": "Lahore",
-      "image": "assets/images/patient_3.png"
+      "image": "assets/images/patient_3.png",
     },
     {
       "name": "Sher Bano",
       "age": "33 Years",
       "location": "Risalpur",
-      "image": "assets/images/patient_4.png"
+      "image": "assets/images/patient_4.png",
     },
     {
       "name": "Naheed",
       "age": "30 Years",
       "location": "Soon Valley, Sakesar",
-      "image": "assets/images/patient_5.png"
+      "image": "assets/images/patient_5.png",
     },
   ];
 
@@ -46,9 +47,12 @@ class PatientsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Patients",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -123,14 +127,19 @@ class PatientsScreen extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             label,
-            style: const TextStyle(color: Colors.grey, fontSize: 14),
+            style: GoogleFonts.poppins(color: Colors.grey, fontSize: 14),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildPatientCard(String name, String age, String location, String image) {
+  Widget _buildPatientCard(
+    String name,
+    String age,
+    String location,
+    String image,
+  ) {
     return Card(
       color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -155,11 +164,17 @@ class PatientsScreen extends StatelessWidget {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   age,
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: Colors.grey.shade700,
+                  ),
                 ),
                 SizedBox(height: 4),
                 Row(
@@ -168,7 +183,10 @@ class PatientsScreen extends StatelessWidget {
                     const SizedBox(width: 4),
                     Text(
                       location,
-                      style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: Colors.grey.shade700,
+                      ),
                     ),
                   ],
                 ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppointmentHistoryScreen extends StatelessWidget {
   final List<Map<String, String>> appointments = [
     {"title": "Appointment with Dr Asmara", "date": "Dec 30, 2024"},
     {"title": "Appointment with Dr Fahad", "date": "Dec 30, 2024"},
   ];
+
+  AppointmentHistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +19,12 @@ class AppointmentHistoryScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Appointment History",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -46,7 +52,7 @@ class AppointmentHistoryScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: const Color.fromARGB(32, 158, 158, 158),
             blurRadius: 5,
             spreadRadius: 1,
             offset: const Offset(0, 2),
@@ -63,12 +69,15 @@ class AppointmentHistoryScreen extends StatelessWidget {
               children: [
                 Text(
                   appointment["title"]!,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   appointment["date"]!,
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey),
                 ),
               ],
             ),
