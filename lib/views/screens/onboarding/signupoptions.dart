@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/screens/common/signup.dart';
+import 'package:healthcare/views/screens/patient/bottom_navigation_patient.dart';
 
 class SignUpOptions extends StatelessWidget {
   const SignUpOptions ({super.key});
@@ -35,9 +36,7 @@ class SignUpOptions extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             NavButtons(
-              destination: SignUp(
-                type: "Patient",
-              ),
+              destination: BottomNavigationBarPatientScreen(profileStatus: "incomplete"),
               text: "Patient",
             ),
             const SizedBox(height: 16),
