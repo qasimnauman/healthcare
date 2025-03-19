@@ -66,11 +66,10 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => DoctorsScreen(),
-                      ),
-                    );
+                    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DoctorsScreen()),
+            );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,

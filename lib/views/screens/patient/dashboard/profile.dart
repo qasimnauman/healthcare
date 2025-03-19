@@ -94,9 +94,9 @@ class _PatientMenuScreenState extends State<PatientMenuScreen> {
           }
           if (item.title == "Logout") {
             Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Onboarding3()),
-                    );
+              context,
+              MaterialPageRoute(builder: (context) => Onboarding3()),
+            );
           }
         },
       ),
