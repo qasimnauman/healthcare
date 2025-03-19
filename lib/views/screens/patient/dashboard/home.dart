@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/screens/patient/appointment/available_doctors.dart';
 import 'package:healthcare/views/screens/patient/complete_profile/profile_page1.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
@@ -64,7 +65,13 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => DoctorsScreen(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
