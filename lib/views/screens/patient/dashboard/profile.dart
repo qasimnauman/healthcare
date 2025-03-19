@@ -1,57 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/screens/menu/appointment_history.dart';
+import 'package:healthcare/views/screens/menu/faqs.dart';
+import 'package:healthcare/views/screens/menu/payment_method.dart';
+import 'package:healthcare/views/screens/menu/profile_update.dart';
+import 'package:healthcare/views/screens/onboarding/onboarding_3.dart';
 
-class PatientProfileScreen extends StatelessWidget {
-  void _navigateTo(BuildContext context, Widget screen) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
-  }
+
+class PatientMenuScreen extends StatefulWidget {
+  const PatientMenuScreen({super.key});
+
+  @override
+  State<PatientMenuScreen> createState() => _PatientMenuScreenState();
+}
+
+class _PatientMenuScreenState extends State<PatientMenuScreen> {
+  final List<MenuItem> menuItems = [
+    MenuItem("Update Profile", Icons.person_outline, ProfileEditorScreen()),
+    MenuItem("Payment Methods", Icons.credit_card, PaymentMethodsScreen()),
+    MenuItem("Appointments History", Icons.history, AppointmentHistoryScreen()),
+    MenuItem("FAQs", Icons.help_outline, FAQScreen()),
+    MenuItem("Help Center", Icons.support_agent),
+    MenuItem("Logout", Icons.logout),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 80, 20, 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 16),
-
-            // Profile Picture & Name
+            SizedBox(height: 10),
             CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/profile.jpg'), // Change to network URL if needed
+              backgroundImage: AssetImage("assets/images/User.png"), // Replace with actual profile image URL
             ),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             Text(
               "Amna",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
-
-            // Appointments & Expenditures
+            SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _infoTile("Appointments", "25", LucideIcons.calendarPlus),
-                Container(
-                  height: 40,
-                  width: 1,
-                  color: Colors.grey.shade300,
-                ),
-                _infoTile("Expenditures", "Rs 15000", LucideIcons.wallet),
+                _buildStatCard("Appointments", "25", Icons.local_hospital),
+                SizedBox(width: 20),
+                _buildStatCard("Earnings", "Rs 15000", Icons.attach_money),
               ],
             ),
-            const SizedBox(height: 16),
-
-            // Menu List
+            SizedBox(height: 20),
             Expanded(
-              child: ListView(
-                children: [
-                  _menuTile(context, "Update Profile", LucideIcons.user, UpdateProfileScreen()),
-                  _menuTile(context, "Payment Methods", LucideIcons.creditCard, PaymentMethodsScreen()),
-                  _menuTile(context, "Appointments History", LucideIcons.history, AppointmentHistoryScreen()),
-                  _menuTile(context, "FAQs", LucideIcons.circleHelp, FAQScreen()),
-                  _menuTile(context, "Help Center", LucideIcons.headphones, HelpCenterScreen()),
-                  _menuTile(context, "Logout", LucideIcons.logOut, LogoutScreen()),
-                ],
+              child: ListView.builder(
+                itemCount: menuItems.length,
+                itemBuilder: (context, index) {
+                  return _buildMenuItem(menuItems[index]);
+                },
               ),
             ),
           ],
@@ -60,31 +67,47 @@ class PatientProfileScreen extends StatelessWidget {
     );
   }
 
-  // Widget for Info Tile (Appointments & Expenditures)
-  Widget _infoTile(String title, String value, IconData icon) {
-    return Expanded(
-      child: Column(
-        children: [
-          Icon(icon, color: Colors.blue, size: 30),
-          const SizedBox(height: 4),
-          Text(title, style: TextStyle(fontSize: 14, color: Colors.blue)),
-          const SizedBox(height: 4),
-          Text(value, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue)),
-        ],
-      ),
+  Widget _buildStatCard(String title, String value, IconData icon) {
+    return Column(
+      children: [
+        Icon(icon, color: Colors.blue, size: 30),
+        SizedBox(height: 5),
+        Text(title, style: GoogleFonts.poppins(color: Colors.grey)),
+        SizedBox(height: 3),
+        Text(value, style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
+      ],
     );
   }
 
-  // Widget for Clickable Menu Items
-  Widget _menuTile(BuildContext context, String title, IconData icon, Widget screen) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: Colors.blue.shade100,
-        child: Icon(icon, color: Colors.blue),
+  Widget _buildMenuItem(MenuItem item) {
+    return Card(
+      color: Colors.white,
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: ListTile(
+        leading: Icon(item.icon, color: Colors.blue),
+        title: Text(item.title, style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500)),
+        trailing: Icon(Icons.arrow_forward_ios, size: 18),
+        onTap: () {
+          if (item.screen != null) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => item.screen!));
+          }
+          if (item.title == "Logout") {
+            Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Onboarding3()),
+                    );
+          }
+        },
       ),
-      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-      trailing: Icon(LucideIcons.chevronRight, color: Colors.black54),
-      onTap: () => _navigateTo(context, screen),
     );
   }
+}
+
+class MenuItem {
+  final String title;
+  final IconData icon;
+  final Widget? screen;
+
+  MenuItem(this.title, this.icon, [this.screen]);
 }

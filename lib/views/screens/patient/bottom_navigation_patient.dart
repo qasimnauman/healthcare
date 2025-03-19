@@ -27,7 +27,7 @@ class _BottomNavigationBarPatientScreenState extends State<BottomNavigationBarPa
     PatientHomeScreen(profileStatus: profileStatus),
     ReportsScreen(),
     PatientFinancesScreen(),
-    PatientProfileScreen(),
+    PatientMenuScreen(),
   ];
 
   void _onItemTapped(int index) {

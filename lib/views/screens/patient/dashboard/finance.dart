@@ -12,9 +12,10 @@ class PatientFinancesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,7 +45,7 @@ class PatientFinancesScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 40),
 
               // Recent Transactions Title
               Text(
@@ -66,20 +67,6 @@ class PatientFinancesScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-
-      // Bottom Navigation Bar
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2, // Finances tab selected
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        items: [
-          BottomNavigationBarItem(icon: Icon(LucideIcons.house), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(LucideIcons.chartBar), label: "Reports"),
-          BottomNavigationBarItem(icon: Icon(LucideIcons.wallet), label: "Finances"),
-          BottomNavigationBarItem(icon: Icon(LucideIcons.user), label: "Profile"),
-        ],
       ),
     );
   }
