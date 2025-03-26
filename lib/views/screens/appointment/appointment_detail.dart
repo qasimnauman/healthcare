@@ -122,7 +122,47 @@ class AppointmentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
+                    Row(
+                      children: [
+                        Text(
+                          "Blood Group:",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          " B+",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          "Disease:",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          " Fever",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

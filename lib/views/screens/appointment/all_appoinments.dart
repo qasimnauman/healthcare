@@ -25,7 +25,32 @@ class AppointmentsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            _buildSearchBar(),
+            // _buildSearchBar(),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                // color: Colors.grey[200],
+                border: Border.all(color: Colors.grey[300]!),
+                borderRadius: BorderRadius.circular(6),
+              ),  
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Online",
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Icon(
+                    Icons.wifi_rounded,
+                    color: Colors.black,
+                  )
+                ],
+              ),
+            ),
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
