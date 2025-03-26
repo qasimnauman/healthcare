@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 
-class AppointmentDetailsScreen extends StatelessWidget {
-  const AppointmentDetailsScreen({super.key});
+class AppointmentDetailsScreenPhysical extends StatelessWidget {
+  const AppointmentDetailsScreenPhysical({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -162,31 +162,52 @@ class AppointmentDetailsScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 5),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildActionButton(
-                          "Copy Invite",
-                          Color.fromRGBO(64, 124, 226, 1),
+                        Text(
+                          "Address",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
                         ),
-                        _buildActionButton("Reschedule", Colors.red),
+                        Text(
+                          " - 123, Street 1, New York",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        )
                       ],
-                    ),
+                    )
+                    // const SizedBox(height: 50),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     _buildActionButton(
+                    //       "Copy Invite",
+                    //       Color.fromRGBO(64, 124, 226, 1),
+                    //     ),
+                    //     _buildActionButton("Reschedule", Colors.red),
+                    //   ],
+                    // ),
+                    ,
                     const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(64, 124, 226, 1),
+                          backgroundColor: Colors.red,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text(
-                          "Join Session",
+                          "Reschedule",
                           style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 16,

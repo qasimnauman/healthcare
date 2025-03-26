@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +16,17 @@ class PatientHomeScreen extends StatefulWidget {
 class _PatientHomeScreenState extends State<PatientHomeScreen> {
   late String profileStatus;
 
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   profileStatus = widget.profileStatus;
+  //   // Show popup automatically if the profile is not complete
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {
+  //     if (profileStatus != "complete") {
+  //       showPopup(context);
+  //     }
+  //   });
+  // }
   @override
   void initState() {
     super.initState();
@@ -24,7 +34,12 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     // Show popup automatically if the profile is not complete
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (profileStatus != "complete") {
-        showPopup(context);
+        showPopup(context, () {
+          setState(() {
+            profileStatus =
+                "complete"; // Set profileStatus to complete (or true)
+          });
+        });
       }
     });
   }
@@ -39,9 +54,15 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Welcome Section
-              Text("Welcome", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
+              Text(
+                "Welcome",
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 5),
-              Text("Amna", style: TextStyle(fontSize: 18, color: Colors.black54)),
+              Text(
+                "Amna",
+                style: TextStyle(fontSize: 18, color: Colors.black54),
+              ),
 
               SizedBox(height: 15),
 
@@ -67,9 +88,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DoctorsScreen()),
-            );
+                      context,
+                      MaterialPageRoute(builder: (context) => DoctorsScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
@@ -78,7 +99,10 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                     ),
                     padding: EdgeInsets.symmetric(vertical: 15),
                   ),
-                  child: Text("Book a Consultation", style: TextStyle(fontSize: 16, color: Colors.white)),
+                  child: Text(
+                    "Book a Consultation",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                 ),
               ),
 
@@ -88,8 +112,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Upcoming Appointments", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text("See all", style: TextStyle(fontSize: 16, color: Colors.blue)),
+                  Text(
+                    "Upcoming Appointments",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "See all",
+                    style: TextStyle(fontSize: 16, color: Colors.blue),
+                  ),
                 ],
               ),
 
@@ -128,15 +158,27 @@ class AppointmentCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Appointment with", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                Text("Dr. Rizwan", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                Text(
+                  "Appointment with",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "Dr. Rizwan",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text("Jan 10, 2025", style: TextStyle(fontSize: 14, color: Colors.grey)),
-                Text("12:00 pm - 1:00 pm", style: TextStyle(fontSize: 14, color: Colors.grey)),
+                Text(
+                  "Jan 10, 2025",
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+                Text(
+                  "12:00 pm - 1:00 pm",
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
               ],
             ),
           ],
@@ -146,83 +188,90 @@ class AppointmentCard extends StatelessWidget {
   }
 }
 
-void showPopup(BuildContext context) {
+void showPopup(BuildContext context, VoidCallback onSkip) {
   showDialog(
     context: context,
-    barrierDismissible:
-        false, // Prevent closing the dialog when tapping outside
+    barrierDismissible: false, // Prevent dismissing by tapping outside
     builder: (BuildContext context) {
-      return Stack(
-        children: [
-          // Blurred background effect
-          BackdropFilter(
-            filter: ImageFilter.blur(
-              sigmaX: 5,
-              sigmaY: 5,
-            ), // Adjust blur intensity
-            child: Container(
-              color: const Color.fromARGB(
-                30,
-                0,
-                0,
-                0,
-              ), // Darken background slightly
-            ),
-          ),
-          AlertDialog(
-            backgroundColor: const Color.fromRGBO(64, 124, 226, 1),
-            title: Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 20),
-              child: Center(
-                child: Text(
-                  "Please Complete Your Profile first",
-                  style: GoogleFonts.poppins(fontSize: 20, color: Colors.white),
-                  textAlign: TextAlign.center,
+      return WillPopScope(
+        onWillPop: () async => false, // Prevent dismissing with the back button
+        child: AlertDialog(
+          backgroundColor: const Color.fromRGBO(64, 124, 226, 1),
+          titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          // Using a Stack to overlay the Skip button at the top right
+          title: Stack(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50, bottom: 20),
+                  child: Center(
+                    child: Text(
+                      "Please Complete Your Profile first",
+                      style: GoogleFonts.poppins(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
               ),
-            ),
-            actions: [
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const CompleteProfilePatient1Screen(),
-                    ),
-                  );
-                },
-                child: Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(32),
-                      color: const Color.fromRGBO(217, 217, 217, 1),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 4,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    width: 100,
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Center(
-                      child: Text(
-                        "Proceed",
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: TextButton(
+                  onPressed: () {
+                    onSkip(); // Update the profileStatus variable
+                    Navigator.of(context).pop(); // Dismiss the dialog
+                  },
+                  child: Text(
+                    "Skip",
+                    style: GoogleFonts.poppins(color: Colors.white),
                   ),
                 ),
               ),
             ],
           ),
-        ],
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CompleteProfilePatient1Screen(),
+                  ),
+                );
+              },
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32),
+                    color: const Color.fromRGBO(217, 217, 217, 1),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromRGBO(0, 0, 0, 0.25),
+                        blurRadius: 4,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  width: 100,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Center(
+                    child: Text(
+                      "Proceed",
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       );
     },
   );
 }
-
