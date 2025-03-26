@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthcare/views/screens/appointment/all_appoinments.dart';
+import 'package:healthcare/views/screens/appointment/appointment_medium.dart';
 import 'package:healthcare/views/screens/complete_profile/profile1.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -189,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AppointmentsScreen(),
+                        builder: (context) => AppointmentMedium(),
                       ),
                     );
                   },
