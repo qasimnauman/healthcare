@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class RemoveAvailability extends StatefulWidget {
@@ -13,9 +14,15 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
   String? _selectedTime;
 
   final List<String> _timeSlots = [
-    "09:00 AM", "10:00 AM", "11:00 AM",
-    "01:00 PM", "02:00 PM", "03:00 PM",
-    "04:00 PM", "07:00 PM", "08:00 PM"
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "01:00 PM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+    "07:00 PM",
+    "08:00 PM",
   ];
 
   @override
@@ -54,6 +61,53 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
     );
   }
 
+  // Widget _buildCalendar() {
+  //   return Container(
+  //     width: 400,
+  //     height: 410,
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(12),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.black12,
+  //           blurRadius: 8,
+  //           spreadRadius: 2,
+  //           offset: const Offset(0, 2),
+  //         ),
+  //       ],
+  //     ),
+  //     padding: const EdgeInsets.all(8.0),
+  //     child: TableCalendar(
+  //       focusedDay: _selectedDay,
+  //       firstDay: DateTime.utc(2020, 1, 1),
+  //       lastDay: DateTime.utc(2030, 12, 31),
+  //       calendarFormat: CalendarFormat.month,
+  //       calendarStyle: CalendarStyle(
+  //         todayDecoration: BoxDecoration(
+  //           color: Color.fromRGBO(64, 124, 226, 1),
+  //           shape: BoxShape.circle,
+  //         ),
+  //         selectedDecoration: BoxDecoration(
+  //           color: Color.fromRGBO(64, 124, 226, 1),
+  //           shape: BoxShape.circle,
+  //         ),
+  //       ),
+  //       headerStyle: const HeaderStyle(
+  //         formatButtonVisible: false,
+  //         titleCentered: true,
+  //         titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  //       ),
+  //       selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+  //       onDaySelected: (selectedDay, focusedDay) {
+  //         setState(() {
+  //           _selectedDay = selectedDay;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
+
   Widget _buildCalendar() {
     return Container(
       width: 400,
@@ -77,19 +131,29 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
         lastDay: DateTime.utc(2030, 12, 31),
         calendarFormat: CalendarFormat.month,
         calendarStyle: CalendarStyle(
+          // Unselected days: transparent background and black text.
+          defaultDecoration: BoxDecoration(color: Colors.transparent),
+          defaultTextStyle: const TextStyle(color: Colors.black),
+          // Today: also no decoration and black text.
           todayDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: Colors.transparent,
             shape: BoxShape.circle,
           ),
+          todayTextStyle: const TextStyle(color: Colors.black),
+          // Selected day: blue background and white text.
           selectedDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: const Color.fromRGBO(64, 124, 226, 1),
             shape: BoxShape.circle,
           ),
+          selectedTextStyle: const TextStyle(color: Colors.white),
         ),
-        headerStyle: const HeaderStyle(
+        headerStyle: HeaderStyle(
           formatButtonVisible: false,
           titleCentered: true,
-          titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          titleTextStyle: GoogleFonts.poppins(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
         selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
         onDaySelected: (selectedDay, focusedDay) {
@@ -106,30 +170,37 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
       spacing: 12,
       runSpacing: 12,
       alignment: WrapAlignment.center,
-      children: _timeSlots.map((time) {
-        bool isSelected = time == _selectedTime;
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              _selectedTime = time;
-            });
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-            decoration: BoxDecoration(
-              color: isSelected ? Color.fromRGBO(64, 124, 226, 1) : Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Color.fromRGBO(64, 124, 226, 1)),
-            ),
-            child: Text(
-              time,
-              style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black,
+      children:
+          _timeSlots.map((time) {
+            bool isSelected = time == _selectedTime;
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedTime = time;
+                });
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 15,
+                ),
+                decoration: BoxDecoration(
+                  color:
+                      isSelected
+                          ? Color.fromRGBO(64, 124, 226, 1)
+                          : Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Color.fromRGBO(64, 124, 226, 1)),
+                ),
+                child: Text(
+                  time,
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : Colors.black,
+                  ),
+                ),
               ),
-            ),
-          ),
-        );
-      }).toList(),
+            );
+          }).toList(),
     );
   }
 
@@ -147,7 +218,11 @@ class _RemoveAvailabilityState extends State<RemoveAvailability> {
         ),
         child: const Text(
           "Remove Availability",
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );
