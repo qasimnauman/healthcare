@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/patient/appointment/book_appointment.dart';
+import 'package:healthcare/views/screens/patient/appointment/set_location.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
-class DoctorsScreen extends StatelessWidget {
+class DoctorsScreen extends StatefulWidget {
+  @override
+  _DoctorsScreenState createState() => _DoctorsScreenState();
+}
+
+class _DoctorsScreenState extends State<DoctorsScreen> {
+  String? selectedRating;
+  String? selectedLocation;
+  String? selectedSpeciality;
+
   final List<Map<String, String>> doctors = [
     {
       "name": "Dr Rizwan",
@@ -48,6 +57,62 @@ class DoctorsScreen extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () => _showFilterPopup());
+  }
+
+  void _showFilterPopup() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Set Filters"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildDropdown("Select Rating", ["4+", "3+", "2+", "1+"], (value) {
+                setState(() => selectedRating = value);
+              }),
+              _buildDropdown("Select Location", ["Islamabad", "Rawalpindi", "Lahore"], (value) {
+                setState(() => selectedLocation = value);
+              }),
+              _buildDropdown("Select Speciality", ["Cardiologist", "Dentist", "Orthopaedic"], (value) {
+                setState(() => selectedSpeciality = value);
+              }),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text("Apply"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildDropdown(String hint, List<String> options, ValueChanged<String?> onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: DropdownButtonFormField<String>(
+        decoration: InputDecoration(border: OutlineInputBorder()),
+        hint: Text(hint),
+        value: null,
+        onChanged: onChanged,
+        items: options.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarOnboarding(isBackButtonVisible: true, text: "Doctors"),
@@ -85,10 +150,10 @@ class DoctorsScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => BookAppointmentScreen(doctor: doctors[index]),
-                      ),
-                    );
+                        MaterialPageRoute(
+                          builder: (context) => DoctorDetailsScreen(),
+                        ),
+                      );
                     },
                     child: DoctorCard(
                       name: doctors[index]["name"]!,
@@ -122,7 +187,6 @@ class DoctorsScreen extends StatelessWidget {
     );
   }
 }
-
 
 // Doctor Card Widget
 class DoctorCard extends StatelessWidget {
