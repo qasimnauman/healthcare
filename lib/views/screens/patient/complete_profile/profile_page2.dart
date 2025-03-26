@@ -18,6 +18,20 @@ class _CompleteProfilePatient2ScreenState extends State<CompleteProfilePatient2S
   File? _medicalReport2;
   final ImagePicker _picker = ImagePicker();
 
+  String? selectedBloodGroup;
+  String? selectedDisease;
+
+  final List<String> bloodGroups = ["A-", "A+", "B-", "B+", "AB", "AB-"];
+  final List<String> diseases = [
+    "Diabetes",
+    "Hypertension",
+    "High Blood Pressure",
+    "Arthritis",
+    "Asthma",
+    "Kidney Problem",
+    "Heart Issue"
+  ];
+
   Future<void> _pickFile(bool isFirstReport) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
@@ -29,6 +43,32 @@ class _CompleteProfilePatient2ScreenState extends State<CompleteProfilePatient2S
         }
       });
     }
+  }
+
+  Widget _buildDropdown({required String hint, required List<String> items, required String? value, required void Function(String?) onChanged}) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          isExpanded: true,
+          value: value,
+          hint: Text(hint, style: GoogleFonts.poppins(color: Colors.grey)),
+          items: items.map((String item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Text(item, style: GoogleFonts.poppins(color: Colors.black)),
+            );
+          }).toList(),
+          onChanged: onChanged,
+        ),
+      ),
+    );
   }
 
   Widget _buildTextField({
@@ -123,40 +163,60 @@ class _CompleteProfilePatient2ScreenState extends State<CompleteProfilePatient2S
         ),
       ),
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTextField(hint: "Blood Group", icon: Icons.bloodtype),
-            _buildTextField(hint: "Disability (If Any)", icon: Icons.accessibility),
-            _buildTextField(hint: "Disease", icon: Icons.sick),
-            _buildUploadBox(label: "Medical Report 1", isFirstReport: true),
-            _buildUploadBox(label: "Medical Report 2", isFirstReport: false),
-            _buildTextField(hint: "Additional Notes", icon: Icons.note),
-            const SizedBox(height: 30),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () => popUpSuccess(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(64, 124, 226, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildDropdown(
+                hint: "Select Blood Group",
+                items: bloodGroups,
+                value: selectedBloodGroup,
+                onChanged: (value) {
+                  setState(() {
+                    selectedBloodGroup = value;
+                  });
+                },
+              ),
+              _buildTextField(hint: "Disability (If Any)", icon: Icons.accessibility),
+              _buildDropdown(
+                hint: "Select Disease",
+                items: diseases,
+                value: selectedDisease,
+                onChanged: (value) {
+                  setState(() {
+                    selectedDisease = value;
+                  });
+                },
+              ),
+              _buildUploadBox(label: "Medical Report 1", isFirstReport: true),
+              _buildUploadBox(label: "Medical Report 2", isFirstReport: false),
+              _buildTextField(hint: "Additional Notes", icon: Icons.note),
+              const SizedBox(height: 30),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () => popUpSuccess(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(64, 124, 226, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                ),
-                child: Text(
-                  "Next",
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  child: Text(
+                    "Next",
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
