@@ -64,6 +64,56 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
     );
   }
 
+  // Widget _buildCalendar() {
+  //   return Container(
+  //     width: 400,
+  //     height: 410,
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(12),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.black12,
+  //           blurRadius: 8,
+  //           spreadRadius: 2,
+  //           offset: const Offset(0, 2),
+  //         ),
+  //       ],
+  //     ),
+  //     padding: const EdgeInsets.all(8.0),
+  //     child: TableCalendar(
+  //       focusedDay: _selectedDay,
+  //       firstDay: DateTime.utc(2020, 1, 1),
+  //       lastDay: DateTime.utc(2030, 12, 31),
+  //       calendarFormat: CalendarFormat.month,
+  //       calendarStyle: CalendarStyle(
+  //         todayDecoration: BoxDecoration(
+  //           color: Color.fromRGBO(64, 124, 226, 1),
+  //           shape: BoxShape.circle,
+  //         ),
+  //         selectedDecoration: BoxDecoration(
+  //           color: Color.fromRGBO(64, 124, 226, 1),
+  //           shape: BoxShape.circle,
+  //         ),
+  //       ),
+  //       headerStyle: HeaderStyle(
+  //         formatButtonVisible: false,
+  //         titleCentered: true,
+  //         titleTextStyle: GoogleFonts.poppins(
+  //           fontWeight: FontWeight.bold,
+  //           fontSize: 16,
+  //         ),
+  //       ),
+  //       selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+  //       onDaySelected: (selectedDay, focusedDay) {
+  //         setState(() {
+  //           _selectedDay = selectedDay;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
+
   Widget _buildCalendar() {
     return Container(
       width: 400,
@@ -87,14 +137,21 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
         lastDay: DateTime.utc(2030, 12, 31),
         calendarFormat: CalendarFormat.month,
         calendarStyle: CalendarStyle(
+          // Unselected days: transparent background and black text.
+          defaultDecoration: BoxDecoration(color: Colors.transparent),
+          defaultTextStyle: const TextStyle(color: Colors.black),
+          // Today: also no decoration and black text.
           todayDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: Colors.transparent,
             shape: BoxShape.circle,
           ),
+          todayTextStyle: const TextStyle(color: Colors.black),
+          // Selected day: blue background and white text.
           selectedDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: const Color.fromRGBO(64, 124, 226, 1),
             shape: BoxShape.circle,
           ),
+          selectedTextStyle: const TextStyle(color: Colors.white),
         ),
         headerStyle: HeaderStyle(
           formatButtonVisible: false,
