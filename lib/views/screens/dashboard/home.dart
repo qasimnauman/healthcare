@@ -204,7 +204,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             SizedBox(height: 8),
-
             Column(
               children: List.generate(3, (index) {
                 return Container(
