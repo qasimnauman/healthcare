@@ -8,7 +8,8 @@ import 'package:table_calendar/table_calendar.dart';
 class BookAppointmentScreen extends StatefulWidget {
   final Map<String, String> doctor;
 
-  const BookAppointmentScreen({required this.doctor, Key? key}) : super(key: key);
+  const BookAppointmentScreen({required this.doctor, Key? key})
+    : super(key: key);
 
   @override
   _BookAppointmentScreenState createState() => _BookAppointmentScreenState();
@@ -22,14 +23,24 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
   TextEditingController notesController = TextEditingController();
 
   final List<String> availableTimes = [
-    "09:00 AM", "10:00 AM", "11:00 AM", "01:00 PM",
-    "02:00 PM", "03:00 PM", "04:00 PM", "07:00 PM", "08:00 PM"
+    "09:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "01:00 PM",
+    "02:00 PM",
+    "03:00 PM",
+    "04:00 PM",
+    "07:00 PM",
+    "08:00 PM",
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarOnboarding(isBackButtonVisible: true, text: "Book Appointment"),
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Book Appointment",
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
@@ -41,22 +52,48 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(widget.doctor["image"]!, width: 70, height: 70, fit: BoxFit.cover),
+                  child: Image.asset(
+                    widget.doctor["image"]!,
+                    width: 70,
+                    height: 70,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.doctor["name"]!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                    Text(widget.doctor["specialty"]!, style: TextStyle(color: Colors.grey)),
+                    Text(
+                      widget.doctor["name"]!,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      widget.doctor["specialty"]!,
+                      style: TextStyle(color: Colors.grey),
+                    ),
                     Row(
                       children: [
-                        _iconText(LucideIcons.star, widget.doctor["rating"]!, Colors.blue),
+                        _iconText(
+                          LucideIcons.star,
+                          widget.doctor["rating"]!,
+                          Colors.blue,
+                        ),
                         SizedBox(width: 10),
-                        _iconText(LucideIcons.dollarSign, widget.doctor["fee"]!, Colors.blue),
+                        _iconText(
+                          LucideIcons.dollarSign,
+                          widget.doctor["fee"]!,
+                          Colors.blue,
+                        ),
                       ],
                     ),
-                    _iconText(LucideIcons.mapPin, widget.doctor["location"]!, Colors.grey),
+                    _iconText(
+                      LucideIcons.mapPin,
+                      widget.doctor["location"]!,
+                      Colors.grey,
+                    ),
                   ],
                 ),
               ],
@@ -64,14 +101,14 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
             SizedBox(height: 16),
 
             // About Section
-            Text("About", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(
+              "About",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
             SizedBox(height: 5),
             Text(
               "Lorem ipsum dolor sit amet, consectetur adipi elit, sed do eiusmod tempor incididunt ut laore et dolore magna aliqua. Ut enim ad minim veniam... ",
-              style: GoogleFonts.poppins(
-                fontSize: 14,
-                color: Colors.black54,
-              ),
+              style: GoogleFonts.poppins(fontSize: 14, color: Colors.black54),
             ),
             const SizedBox(height: 4),
             Text(
@@ -114,7 +151,9 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
               maxLines: 3,
               decoration: InputDecoration(
                 hintText: "Additional Notes",
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 prefixIcon: Icon(LucideIcons.fileText),
               ),
             ),
@@ -128,7 +167,7 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
     );
   }
 
- Widget _buildCalendar() {
+  Widget _buildCalendar() {
     return Container(
       width: 400,
       height: 410,
@@ -151,14 +190,21 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
         lastDay: DateTime.utc(2030, 12, 31),
         calendarFormat: CalendarFormat.month,
         calendarStyle: CalendarStyle(
+          // Unselected days: transparent background and black text.
+          defaultDecoration: BoxDecoration(color: Colors.transparent),
+          defaultTextStyle: const TextStyle(color: Colors.black),
+          // Today: also no decoration and black text.
           todayDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: Colors.transparent,
             shape: BoxShape.circle,
           ),
+          todayTextStyle: const TextStyle(color: Colors.black),
+          // Selected day: blue background and white text.
           selectedDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: const Color.fromRGBO(64, 124, 226, 1),
             shape: BoxShape.circle,
           ),
+          selectedTextStyle: const TextStyle(color: Colors.white),
         ),
         headerStyle: HeaderStyle(
           formatButtonVisible: false,
@@ -238,9 +284,11 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => PaymentMethodScreen(), // Navigate to JazzCash screen
+              builder:
+                  (context) =>
+                      PaymentMethodScreen(), // Navigate to JazzCash screen
             ),
-      );
+          );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromRGBO(64, 124, 226, 1),
@@ -259,5 +307,4 @@ class _BookAppointmentScreenState extends State<BookAppointmentScreen> {
       ),
     );
   }
-
 }
