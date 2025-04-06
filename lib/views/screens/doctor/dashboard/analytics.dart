@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/analytics/financial_analysis.dart';
-import 'package:healthcare/views/screens/analytics/patients.dart';
-import 'package:healthcare/views/screens/analytics/performance_analysis.dart';
-import 'package:healthcare/views/screens/analytics/reports.dart';
+import 'package:healthcare/views/screens/doctor/analytics/financial_analysis.dart';
+import 'package:healthcare/views/screens/doctor/analytics/patients.dart';
+import 'package:healthcare/views/screens/doctor/analytics/performance_analysis.dart';
+import 'package:healthcare/views/screens/doctor/analytics/reports.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({super.key});

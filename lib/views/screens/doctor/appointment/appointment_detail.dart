@@ -12,24 +12,6 @@ class AppointmentDetailsScreen extends StatelessWidget {
         isBackButtonVisible: true,
         text: "Appointments",
       ),
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.arrow_back, color: Colors.black),
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //   ),
-      //   title: Text(
-      //     "Appointments",
-      //     style: GoogleFonts.poppins(
-      //       color: Colors.black,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      // ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(

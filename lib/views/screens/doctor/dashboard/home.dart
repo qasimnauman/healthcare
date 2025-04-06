@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthcare/views/screens/appointment/appointment_medium.dart';
-import 'package:healthcare/views/screens/complete_profile/profile1.dart';
+import 'package:healthcare/views/screens/doctor/appointment/appointment_medium.dart';
+import 'package:healthcare/views/screens/doctor/complete_profile/profile1.dart';
 
 class HomeScreen extends StatefulWidget {
   final String profileStatus;

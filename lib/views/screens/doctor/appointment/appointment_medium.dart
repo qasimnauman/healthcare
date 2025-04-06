@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/appointment/all_appoinments.dart';
-import 'package:healthcare/views/screens/appointment/all_appointments_physical.dart';
+import 'package:healthcare/views/screens/doctor/appointment/all_appoinments.dart';
+import 'package:healthcare/views/screens/doctor/appointment/all_appointments_physical.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class AppointmentMedium extends StatefulWidget {

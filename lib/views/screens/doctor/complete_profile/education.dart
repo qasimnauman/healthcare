@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/complete_profile/specialization.dart';
+import 'package:healthcare/views/screens/doctor/complete_profile/specialization.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/appointment/appointment_detail_physical.dart';
+import 'package:healthcare/views/screens/doctor/appointment/appointment_detail.dart';
 
-class AppointmentsScreenAll extends StatelessWidget {
+class AppointmentsScreen extends StatelessWidget {
   final List<Appointment> appointments = [
     Appointment("Hania", "Jan 10, 2025", "12:00 pm - 1:00 pm"),
     Appointment("Hania", "Jan 11, 2025", "12:00 pm - 1:00 pm"),
@@ -11,60 +11,46 @@ class AppointmentsScreenAll extends StatelessWidget {
     Appointment("Hania", "Jun 15, 2025", "10:00 pm - 11:00 pm"),
   ];
 
-  AppointmentsScreenAll({super.key});
+  AppointmentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarOnboarding(isBackButtonVisible: true, text: "Appointments"),
+      appBar: AppBarOnboarding(
+        isBackButtonVisible: true,
+        text: "Appointments",
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            // _buildSearchBar(),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
+                // color: Colors.grey[200],
                 border: Border.all(color: Colors.grey[300]!),
                 borderRadius: BorderRadius.circular(6),
-              ),
-              child: Column(
+              ),  
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Personal Clinic",
-                        style: GoogleFonts.poppins(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    "Online",
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                  SizedBox(height: 5),
-                  Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Icon(
-                        Icons.location_on_rounded,
-                        color: const Color.fromARGB(255, 155, 155, 155),
-                        size: 32,
-                      ),
-                      SizedBox(width: 10),
-                      Text(
-                        "123, ABC Street, XYZ City",
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
+                  Icon(
+                    Icons.wifi_rounded,
+                    color: Colors.black,
+                  )
                 ],
               ),
             ),
-            // _buildSearchBar(),
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
@@ -80,22 +66,22 @@ class AppointmentsScreenAll extends StatelessWidget {
     );
   }
 
-  // Widget _buildSearchBar() {
-  //   return Container(
-  //     padding: EdgeInsets.symmetric(horizontal: 12),
-  //     decoration: BoxDecoration(
-  //       color: Colors.grey[200],
-  //       borderRadius: BorderRadius.circular(25),
-  //     ),
-  //     child: TextField(
-  //       decoration: InputDecoration(
-  //         hintText: "Search patient reports",
-  //         border: InputBorder.none,
-  //         icon: Icon(Icons.search_outlined, color: Colors.grey, size: 30),
-  //       ),
-  //     ),
-  //   );
-  // }
+  /*Widget _buildSearchBar() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(25),
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Search patient reports",
+          border: InputBorder.none,
+          icon: Icon(Icons.search_outlined, color: Colors.grey, size: 30),
+        ),
+      ),
+    );
+  }*/
 
   Widget _buildAppointmentCard(BuildContext context, Appointment appointment) {
     return Card(
@@ -140,22 +126,18 @@ class AppointmentsScreenAll extends StatelessWidget {
             ),
             Column(
               children: [
-                // _buildActionButton("Join Session", Color.fromRGBO(64, 124, 226, 1), () {
-                //   debugPrint("Joining session for ${appointment.patientName}");
-                // }),
+                _buildActionButton("Join Session", Color.fromRGBO(64, 124, 226, 1), () {
+                  debugPrint("Joining session for ${appointment.patientName}");
+                }),
                 SizedBox(height: 8),
-                _buildActionButton(
-                  "Details",
-                  Color.fromRGBO(64, 124, 226, 1),
-                  () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AppointmentDetailsScreenPhysical(),
-                      ),
-                    );
-                  },
-                ),
+                _buildActionButton("Details", Color.fromRGBO(64, 124, 226, 1), () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AppointmentDetailsScreen(),
+                    ),
+                  );
+                }),
               ],
             ),
           ],
@@ -181,7 +163,7 @@ class AppointmentsScreenAll extends StatelessWidget {
         child: Text(
           label,
           style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.center,  
         ),
       ),
     );
