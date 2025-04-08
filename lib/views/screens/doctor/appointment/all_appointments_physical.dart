@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 import 'package:healthcare/views/screens/doctor/appointment/appointment_detail_physical.dart';
 import 'package:healthcare/model/appointments.dart';
+import 'package:healthcare/views/components/buttons.dart';
 
 class AppointmentsScreenAll extends StatelessWidget {
   AppointmentsScreenAll({super.key});
@@ -74,23 +75,6 @@ class AppointmentsScreenAll extends StatelessWidget {
     );
   }
 
-  // Widget _buildSearchBar() {
-  //   return Container(
-  //     padding: EdgeInsets.symmetric(horizontal: 12),
-  //     decoration: BoxDecoration(
-  //       color: Colors.grey[200],
-  //       borderRadius: BorderRadius.circular(25),
-  //     ),
-  //     child: TextField(
-  //       decoration: InputDecoration(
-  //         hintText: "Search patient reports",
-  //         border: InputBorder.none,
-  //         icon: Icon(Icons.search_outlined, color: Colors.grey, size: 30),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget _buildAppointmentCard(BuildContext context, Appointment appointment) {
     return Card(
       color: Colors.white,
@@ -134,11 +118,8 @@ class AppointmentsScreenAll extends StatelessWidget {
             ),
             Column(
               children: [
-                // _buildActionButton("Join Session", Color.fromRGBO(64, 124, 226, 1), () {
-                //   debugPrint("Joining session for ${appointment.patientName}");
-                // }),
                 SizedBox(height: 8),
-                _buildActionButton(
+                buildActionButton(
                   "Details",
                   Color.fromRGBO(64, 124, 226, 1),
                   () {
@@ -153,29 +134,6 @@ class AppointmentsScreenAll extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildActionButton(
-    String label,
-    Color color, [
-    VoidCallback? onPressed,
-  ]) {
-    return SizedBox(
-      width: 130, // Set a fixed width
-      height: 40, // Set a fixed height (optional for uniformity)
-      child: ElevatedButton(
-        onPressed: onPressed ?? () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        child: Text(
-          label,
-          style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
-          textAlign: TextAlign.center,
         ),
       ),
     );
