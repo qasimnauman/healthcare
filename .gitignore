@@ -71,7 +71,6 @@ app.*.map.json
 .classpath
 .project
 .settings/
-.vscode/*
 .ccls-cache
 
 # Flutter repo-specific
@@ -197,3 +196,5 @@ app.*.symbols
 .python-version
 .gclient_previous_custom_vars
 .gclient_previous_sync_commits
+config.bat
+node_modules
