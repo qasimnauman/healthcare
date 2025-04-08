@@ -1,4 +1,13 @@
 {
-    "cmake.ignoreCMakeListsMissing": true,
-    "java.configuration.updateBuildConfiguration": "interactive"
+  "cmake.ignoreCMakeListsMissing": true,
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "task.allowAutomaticTasks": true,
+  "debug.openDebug": "neverOpen",
+  "terminal.integrated.inheritEnv": false,
+  "tasks": {
+    "label": "lint on open",
+    "type": "shell",
+    "command": "npm run lint",
+    "runOn": "folderOpen"
+  }
 }
