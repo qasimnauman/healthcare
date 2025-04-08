@@ -23,7 +23,7 @@ class PatientsScreen extends StatelessWidget {
               child: ListView.builder(
                 itemCount: patients.length,
                 itemBuilder: (context, index) {
-                  return _buildPatientCard(
+                  return buildPatientCard(
                     patients[index]["name"]!,
                     patients[index]["age"]!,
                     patients[index]["location"]!,
@@ -110,7 +110,7 @@ class PatientsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildPatientCard(
+  Widget buildPatientCard(
     String name,
     String age,
     String location,
@@ -172,5 +172,5 @@ class PatientsScreen extends StatelessWidget {
         ),
       ),
     );
-  }
+  }  
 }
