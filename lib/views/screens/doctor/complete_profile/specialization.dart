@@ -263,42 +263,6 @@ void popUpSucess(BuildContext context) {
                 ),
               ),
             ),
-            // actions: [
-            //   InkWell(
-            //     onTap: () {
-            //       Navigator.of(context).pop();
-            //       Navigator.of(context).push(
-            //         MaterialPageRoute(builder: (context) => const HomeScreen()),
-            //       );
-            //     },
-            //     child: Center(
-            //       child: Container(
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(32),
-            //           color: const Color.fromRGBO(217, 217, 217, 1),
-            //           boxShadow: [
-            //             BoxShadow(
-            //               color: const Color.fromRGBO(0, 0, 0, 0.25),
-            //               blurRadius: 4,
-            //               offset: const Offset(0, 4),
-            //             ),
-            //           ],
-            //         ),
-            //         width: 100,
-            //         padding: EdgeInsets.symmetric(vertical: 10),
-            //         child: Center(
-            //           child: Text(
-            //             "Proceed",
-            //             style: GoogleFonts.poppins(
-            //               fontSize: 16,
-            //               color: Colors.black,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ],
           ),
         ],
       );
