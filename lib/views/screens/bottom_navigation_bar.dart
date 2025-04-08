@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare/views/screens/dashboard/analytics.dart';
-import 'package:healthcare/views/screens/dashboard/finances.dart';
-import 'package:healthcare/views/screens/dashboard/home.dart';
-import 'package:healthcare/views/screens/dashboard/menu.dart';
+import 'package:healthcare/views/screens/doctor/dashboard/analytics.dart';
+import 'package:healthcare/views/screens/doctor/dashboard/finances.dart';
+import 'package:healthcare/views/screens/doctor/dashboard/home.dart';
+import 'package:healthcare/views/screens/doctor/dashboard/menu.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
   final String profileStatus;
