@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare/views/screens/analytics/reports.dart';
+import 'package:healthcare/views/screens/doctor/analytics/reports.dart';
 import 'package:healthcare/views/screens/patient/dashboard/finance.dart';
 import 'package:healthcare/views/screens/patient/dashboard/home.dart';
 import 'package:healthcare/views/screens/patient/dashboard/profile.dart';
