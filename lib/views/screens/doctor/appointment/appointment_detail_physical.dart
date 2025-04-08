@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/buttons.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 
 class AppointmentDetailsScreenPhysical extends StatelessWidget {
@@ -12,24 +13,6 @@ class AppointmentDetailsScreenPhysical extends StatelessWidget {
         isBackButtonVisible: true,
         text: "Appointments",
       ),
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.arrow_back, color: Colors.black),
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //   ),
-      //   title: Text(
-      //     "Appointments",
-      //     style: GoogleFonts.poppins(
-      //       color: Colors.black,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      // ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -65,9 +48,9 @@ class AppointmentDetailsScreenPhysical extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildInfoButton(Icons.calendar_today, "1/01/2025"),
+                        buildInfoButton(Icons.calendar_today, "1/01/2025"),
                         const SizedBox(width: 12),
-                        _buildInfoButton(Icons.access_time, "2.00 PM"),
+                        buildInfoButton(Icons.access_time, "2.00 PM"),
                       ],
                     ),
                     const SizedBox(height: 30),
@@ -181,19 +164,7 @@ class AppointmentDetailsScreenPhysical extends StatelessWidget {
                           ),
                         )
                       ],
-                    )
-                    // const SizedBox(height: 50),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //   children: [
-                    //     _buildActionButton(
-                    //       "Copy Invite",
-                    //       Color.fromRGBO(64, 124, 226, 1),
-                    //     ),
-                    //     _buildActionButton("Reschedule", Colors.red),
-                    //   ],
-                    // ),
-                    ,
+                    ),
                     const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity,
@@ -225,38 +196,4 @@ class AppointmentDetailsScreenPhysical extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoButton(IconData icon, String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(64, 124, 226, 1),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.white, size: 18),
-          const SizedBox(width: 6),
-          Text(
-            text,
-            style: GoogleFonts.poppins(color: Colors.white, fontSize: 14),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /*Widget _buildActionButton(String label, Color color) {
-    return SizedBox(
-      width: 140,
-      height: 40,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        child: Text(label, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14)),
-      ),
-    );
-  }*/
 }
