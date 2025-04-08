@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class AddAvailabilityScreen extends StatefulWidget {
-  const AddAvailabilityScreen({super.key});
+class RemoveAvailability extends StatefulWidget {
+  const RemoveAvailability({super.key});
 
   @override
-  State<AddAvailabilityScreen> createState() => _AddAvailabilityScreenState();
+  _RemoveAvailabilityState createState() => _RemoveAvailabilityState();
 }
 
-class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
+class _RemoveAvailabilityState extends State<RemoveAvailability> {
   DateTime _selectedDay = DateTime.now();
   String? _selectedTime;
 
@@ -35,12 +35,9 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           "Add Availability",
-          style: GoogleFonts.poppins(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -63,6 +60,53 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
       ),
     );
   }
+
+  // Widget _buildCalendar() {
+  //   return Container(
+  //     width: 400,
+  //     height: 410,
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(12),
+  //       boxShadow: [
+  //         BoxShadow(
+  //           color: Colors.black12,
+  //           blurRadius: 8,
+  //           spreadRadius: 2,
+  //           offset: const Offset(0, 2),
+  //         ),
+  //       ],
+  //     ),
+  //     padding: const EdgeInsets.all(8.0),
+  //     child: TableCalendar(
+  //       focusedDay: _selectedDay,
+  //       firstDay: DateTime.utc(2020, 1, 1),
+  //       lastDay: DateTime.utc(2030, 12, 31),
+  //       calendarFormat: CalendarFormat.month,
+  //       calendarStyle: CalendarStyle(
+  //         todayDecoration: BoxDecoration(
+  //           color: Color.fromRGBO(64, 124, 226, 1),
+  //           shape: BoxShape.circle,
+  //         ),
+  //         selectedDecoration: BoxDecoration(
+  //           color: Color.fromRGBO(64, 124, 226, 1),
+  //           shape: BoxShape.circle,
+  //         ),
+  //       ),
+  //       headerStyle: const HeaderStyle(
+  //         formatButtonVisible: false,
+  //         titleCentered: true,
+  //         titleTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+  //       ),
+  //       selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+  //       onDaySelected: (selectedDay, focusedDay) {
+  //         setState(() {
+  //           _selectedDay = selectedDay;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
 
   Widget _buildCalendar() {
     return Container(
@@ -87,14 +131,21 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
         lastDay: DateTime.utc(2030, 12, 31),
         calendarFormat: CalendarFormat.month,
         calendarStyle: CalendarStyle(
+          // Unselected days: transparent background and black text.
+          defaultDecoration: BoxDecoration(color: Colors.transparent),
+          defaultTextStyle: const TextStyle(color: Colors.black),
+          // Today: also no decoration and black text.
           todayDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: Colors.transparent,
             shape: BoxShape.circle,
           ),
+          todayTextStyle: const TextStyle(color: Colors.black),
+          // Selected day: blue background and white text.
           selectedDecoration: BoxDecoration(
-            color: Color.fromRGBO(64, 124, 226, 1),
+            color: const Color.fromRGBO(64, 124, 226, 1),
             shape: BoxShape.circle,
           ),
+          selectedTextStyle: const TextStyle(color: Colors.white),
         ),
         headerStyle: HeaderStyle(
           formatButtonVisible: false,
@@ -143,7 +194,7 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
                 ),
                 child: Text(
                   time,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: isSelected ? Colors.white : Colors.black,
                   ),
                 ),
@@ -160,14 +211,14 @@ class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.fromRGBO(64, 124, 226, 1),
+          backgroundColor: Colors.red,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        child: Text(
-          "Add New Availability",
-          style: GoogleFonts.poppins(
+        child: const Text(
+          "Remove Availability",
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Colors.white,

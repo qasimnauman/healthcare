@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthcare/views/screens/menu/appointment_history.dart';
-import 'package:healthcare/views/screens/menu/availability.dart';
-import 'package:healthcare/views/screens/menu/faqs.dart';
-import 'package:healthcare/views/screens/menu/payment_method.dart';
-import 'package:healthcare/views/screens/menu/profile_update.dart';
-import 'package:healthcare/views/screens/menu/withdrawal_history.dart';
+import 'package:healthcare/views/screens/doctor/menu/appointment_history.dart';
+import 'package:healthcare/views/screens/doctor/menu/availability.dart';
+import 'package:healthcare/views/screens/doctor/menu/faqs.dart';
+import 'package:healthcare/views/screens/doctor/menu/payment_method.dart';
+import 'package:healthcare/views/screens/doctor/menu/profile_update.dart';
+import 'package:healthcare/views/screens/doctor/menu/withdrawal_history.dart';
 import 'package:healthcare/views/screens/onboarding/onboarding_3.dart';
 
 

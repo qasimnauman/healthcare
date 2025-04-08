@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthcare/views/screens/menu/availability/add_availability.dart';
-import 'package:healthcare/views/screens/menu/availability/remove_availability.dart';
+import 'package:healthcare/views/screens/doctor/menu/availability/add_availability.dart';
+import 'package:healthcare/views/screens/doctor/menu/availability/remove_availability.dart';
 
 class SetAvailabilityScreen extends StatelessWidget {
   const SetAvailabilityScreen({super.key});

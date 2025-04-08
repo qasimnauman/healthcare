@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/views/components/buttons.dart';
 import 'package:healthcare/views/components/onboarding.dart';
 
-class AppointmentDetailsScreen extends StatelessWidget {
-  const AppointmentDetailsScreen({super.key});
+class AppointmentDetailsScreenPhysical extends StatelessWidget {
+  const AppointmentDetailsScreenPhysical({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,24 +13,6 @@ class AppointmentDetailsScreen extends StatelessWidget {
         isBackButtonVisible: true,
         text: "Appointments",
       ),
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     icon: const Icon(Icons.arrow_back, color: Colors.black),
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //   ),
-      //   title: Text(
-      //     "Appointments",
-      //     style: GoogleFonts.poppins(
-      //       color: Colors.black,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      // ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -65,9 +48,9 @@ class AppointmentDetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildInfoButton(Icons.calendar_today, "1/01/2025"),
+                        buildInfoButton(Icons.calendar_today, "1/01/2025"),
                         const SizedBox(width: 12),
-                        _buildInfoButton(Icons.access_time, "2.00 PM"),
+                        buildInfoButton(Icons.access_time, "2.00 PM"),
                       ],
                     ),
                     const SizedBox(height: 30),
@@ -122,15 +105,64 @@ class AppointmentDetailsScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildActionButton(
-                          "Copy Invite",
-                          Color.fromRGBO(64, 124, 226, 1),
+                        Text(
+                          "Blood Group:",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
                         ),
-                        _buildActionButton("Reschedule", Colors.red),
+                        Text(
+                          " B+",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          "Disease:",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          " Fever",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        Text(
+                          "Address",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        Text(
+                          " - 123, Street 1, New York",
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: Colors.black54,
+                          ),
+                        )
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -139,14 +171,14 @@ class AppointmentDetailsScreen extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromRGBO(64, 124, 226, 1),
+                          backgroundColor: Colors.red,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
                         child: Text(
-                          "Join Session",
+                          "Reschedule",
                           style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontSize: 16,
@@ -164,38 +196,4 @@ class AppointmentDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoButton(IconData icon, String text) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(64, 124, 226, 1),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.white, size: 18),
-          const SizedBox(width: 6),
-          Text(
-            text,
-            style: GoogleFonts.poppins(color: Colors.white, fontSize: 14),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButton(String label, Color color) {
-    return SizedBox(
-      width: 140,
-      height: 40,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        child: Text(label, style: GoogleFonts.poppins(color: Colors.white, fontSize: 14)),
-      ),
-    );
-  }
 }

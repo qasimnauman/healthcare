@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare/model/reports.dart';
 
 class ReportsScreen extends StatelessWidget {
   const ReportsScreen({super.key});
 
-  final List<Map<String, String>> reports = const [
-    {"title": "Appointment with Dr Asmara", "date": "Dec 30, 2024"},
-    {"title": "Appointment with Dr Fahad", "date": "Dec 30, 2024"},
-    {"title": "Last Month Expenditure", "date": "Dec 30, 2024"},
-  ];
 
   @override
   Widget build(BuildContext context) {

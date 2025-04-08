@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/appointment/appointment_detail.dart';
+import 'package:healthcare/views/screens/doctor/appointment/appointment_detail.dart';
+import 'package:healthcare/model/appointments.dart';
+import 'package:healthcare/views/components/buttons.dart';
 
 class AppointmentsScreen extends StatelessWidget {
-  final List<Appointment> appointments = [
-    Appointment("Hania", "Jan 10, 2025", "12:00 pm - 1:00 pm"),
-    Appointment("Hania", "Jan 11, 2025", "12:00 pm - 1:00 pm"),
-    Appointment("Hania", "Jan 13, 2025", "12:00 pm - 1:00 pm"),
-    Appointment("Hania", "Jun 15, 2025", "10:00 pm - 11:00 pm"),
-  ];
-
   AppointmentsScreen({super.key});
 
   @override
@@ -25,7 +20,32 @@ class AppointmentsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            _buildSearchBar(),
+            // _buildSearchBar(),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                // color: Colors.grey[200],
+                border: Border.all(color: Colors.grey[300]!),
+                borderRadius: BorderRadius.circular(6),
+              ),  
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Online",
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Icon(
+                    Icons.wifi_rounded,
+                    color: Colors.black,
+                  )
+                ],
+              ),
+            ),
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
@@ -36,23 +56,6 @@ class AppointmentsScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
-      decoration: BoxDecoration(
-        color: Colors.grey[200],
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "Search patient reports",
-          border: InputBorder.none,
-          icon: Icon(Icons.search_outlined, color: Colors.grey, size: 30),
         ),
       ),
     );
@@ -101,11 +104,11 @@ class AppointmentsScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                _buildActionButton("Join Session", Color.fromRGBO(64, 124, 226, 1), () {
+                buildActionButton("Join Session", Color.fromRGBO(64, 124, 226, 1), () {
                   debugPrint("Joining session for ${appointment.patientName}");
                 }),
                 SizedBox(height: 8),
-                _buildActionButton("Details", Color.fromRGBO(64, 124, 226, 1), () {
+                buildActionButton("Details", Color.fromRGBO(64, 124, 226, 1), () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -121,34 +124,5 @@ class AppointmentsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(
-    String label,
-    Color color, [
-    VoidCallback? onPressed,
-  ]) {
-    return SizedBox(
-      width: 130, // Set a fixed width
-      height: 40, // Set a fixed height (optional for uniformity)
-      child: ElevatedButton(
-        onPressed: onPressed ?? () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        child: Text(
-          label,
-          style: GoogleFonts.poppins(color: Colors.white, fontSize: 12),
-          textAlign: TextAlign.center,  
-        ),
-      ),
-    );
-  }
 }
 
-class Appointment {
-  final String patientName;
-  final String date;
-  final String time;
-
-  Appointment(this.patientName, this.date, this.time);
-}

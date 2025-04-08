@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthcare/views/components/onboarding.dart';
-import 'package:healthcare/views/screens/patient/appointment/available_doctors.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class RescheduleAppointmentScreen extends StatefulWidget {
+class AddAvailabilityScreen extends StatefulWidget {
+  const AddAvailabilityScreen({super.key});
+
   @override
-  _RescheduleAppointmentScreenState createState() =>
-      _RescheduleAppointmentScreenState();
+  State<AddAvailabilityScreen> createState() => _AddAvailabilityScreenState();
 }
 
-class _RescheduleAppointmentScreenState
-    extends State<RescheduleAppointmentScreen> {
+class _AddAvailabilityScreenState extends State<AddAvailabilityScreen> {
   DateTime _selectedDay = DateTime.now();
   String? _selectedTime;
-  bool _isPanelConsultationRequested = false;
-  TextEditingController _notesController = TextEditingController();
 
-  final List<String> availableTimes = [
+  final List<String> _timeSlots = [
     "09:00 AM",
     "10:00 AM",
     "11:00 AM",
@@ -32,128 +28,34 @@ class _RescheduleAppointmentScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarOnboarding(
-        isBackButtonVisible: true,
-        text: "Reschedule Appointment",
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          "Add Availability",
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.fromLTRB(20, 5, 20, 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Doctor Details
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(
-                      'assets/images/patient_1.png',
-                    ), // Replace with network image if needed
-                  ),
-                  SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Dr. Rizwan",
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "Cardiologist",
-                        style: GoogleFonts.poppins(
-                          fontSize: 14,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.star, color: Colors.blue, size: 16),
-                          Text(
-                            " 4.7 ",
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              color: Colors.blue,
-                            ),
-                          ),
-                          Icon(
-                            Icons.attach_money,
-                            color: Colors.blue,
-                            size: 16,
-                          ),
-                          Text(
-                            " Rs 1500",
-                            style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 20),
-
-              // Date Picker
-              Text(
-                "Preferred Time and Date",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 10),
               _buildCalendar(),
-
-              SizedBox(height: 20),
-
+              const SizedBox(height: 16),
               _buildTimeSlots(),
-
-              SizedBox(height: 20),
-
-              // Request Panel Consultation Checkbox
-              Row(
-                children: [
-                  Checkbox(
-                    value: _isPanelConsultationRequested,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _isPanelConsultationRequested = value ?? false;
-                      });
-                    },
-                  ),
-                  Text(
-                    "Request Panel Consultation",
-                    style: GoogleFonts.poppins(fontSize: 14),
-                  ),
-                ],
-              ),
-
-              SizedBox(height: 10),
-
-              // Additional Notes
-              TextField(
-                controller: _notesController,
-                maxLines: 3,
-                decoration: InputDecoration(
-                  hintText: "Additional Notes",
-                  prefixIcon: Icon(Icons.note, color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 20),
-
-              // Reschedule Button
+              const SizedBox(height: 20),
               _buildSubmitButton(),
             ],
           ),
@@ -271,11 +173,11 @@ class _RescheduleAppointmentScreenState
 
   Widget _buildTimeSlots() {
     return Wrap(
-      spacing: 15,
+      spacing: 12,
       runSpacing: 12,
       alignment: WrapAlignment.center,
       children:
-          availableTimes.map((time) {
+          _timeSlots.map((time) {
             bool isSelected = time == _selectedTime;
             return GestureDetector(
               onTap: () {
@@ -286,7 +188,7 @@ class _RescheduleAppointmentScreenState
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   vertical: 12,
-                  horizontal: 20,
+                  horizontal: 15,
                 ),
                 decoration: BoxDecoration(
                   color:
@@ -313,15 +215,7 @@ class _RescheduleAppointmentScreenState
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => DoctorsScreen(), // Navigate to JazzCash screen
-            ),
-          );
-        },
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromRGBO(64, 124, 226, 1),
           shape: RoundedRectangleBorder(
@@ -329,7 +223,7 @@ class _RescheduleAppointmentScreenState
           ),
         ),
         child: Text(
-          "Book Appointment",
+          "Add New Availability",
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.bold,
